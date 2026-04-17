@@ -1,0 +1,35 @@
+# ENV / SECRETS
+.env
+.env.*
+*.env
+
+# PYTHON / BACKEND
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# NODE / FRONTEND
+node_modules/
+.next/
+out/
+build/
+
+# LOGS
+*.log
+
+# OS FILES
+.DS_Store
+Thumbs.db
+
+# IDE / EDITOR
+.vscode/
+.idea/
+*.swp
+
+
+# MISC
+coverage/
+dist/
