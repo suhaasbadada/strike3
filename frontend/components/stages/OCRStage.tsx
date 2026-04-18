@@ -1,9 +1,7 @@
 import { Upload, CheckCircle2, RotateCcw, Loader2, FileImage } from "lucide-react";
 import { PipelineStatus } from "../../lib/types";
-import { useState } from "react";
 
-export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset: () => void }) {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+export function OCRStage({ status, onReset, selectedFile, onFileSelect, ocrText }: { status: PipelineStatus, onReset: () => void, selectedFile: File | null, onFileSelect: (f: File | null) => void, ocrText?: string }) {
   
   const isCompact = status === 'compress' || status === 'verify' || status === 'complete';
   const isActive = status === 'ocr';
@@ -21,7 +19,7 @@ export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset:
         
         {status === 'idle' && (
           <>
-            <label htmlFor="ocr-file-upload" className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex flex-col items-center justify-center py-10 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group relative">
+            <label htmlFor="ocr-file-upload" className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex-1 min-h-[200px] flex flex-col items-center justify-center py-12 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group relative">
               <input 
                 type="file" 
                 id="ocr-file-upload" 
@@ -29,7 +27,7 @@ export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset:
                 accept="image/png, image/jpeg, image/tiff" 
                 onChange={(e) => {
                   if (e.target.files && e.target.files.length > 0) {
-                    setSelectedFile(e.target.files[0]);
+                    onFileSelect(e.target.files[0]);
                   }
                 }}
               />
@@ -87,7 +85,7 @@ export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset:
             <div className="flex items-center space-x-3 mb-3">
               <div className="w-10 h-10 bg-gray-200 rounded object-cover flex-shrink-0 border border-gray-300 flex items-center justify-center text-gray-400 text-[8px] font-bold">DOC</div>
               <div className="bg-[#f0f2f5] border border-gray-200 rounded-lg p-2 font-mono text-[10px] text-gray-600 shadow-inner flex-1 truncate">
-                Invoice #4821 - Fox jumps over lazy dog...
+                {ocrText || "Running inference..."}
               </div>
             </div>
 

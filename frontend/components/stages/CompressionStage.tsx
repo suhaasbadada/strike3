@@ -1,24 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Loader2, Maximize2, X, Play, Pause } from "lucide-react";
-import { PipelineStatus } from "../../lib/types";
+import { Loader2, Maximize2, X, Play, Pause, ChevronDown, ChevronUp } from "lucide-react";
+import { CompressionData, PipelineStatus, TreeEdge, TreeNode } from "../../lib/types";
 import { useCompressionSim } from "../../lib/useCompressionSim";
 import { calculateTreeLayout } from "../../lib/treeLayout";
 
-export function CompressionStage({ status }: { status: PipelineStatus }) {
+export function CompressionStage({ status, liveData, ocrText }: { status: PipelineStatus, liveData: CompressionData | null, ocrText?: string }) {
   const isVisible = status === 'compress' || status === 'verify' || status === 'complete';
   const isActive = status === 'compress';
 
   const [isTreeExpanded, setIsTreeExpanded] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const layoutCache = useRef<{ [key: string]: { nodes: TreeNode[], edges: TreeEdge[] } }>({});
 
-  const { treeData, processedRatio, metrics, allSteps } = useCompressionSim(isActive || status === 'verify' || status === 'complete');
+  const { treeData, processedRatio, metrics, allSteps } = useCompressionSim(isVisible, liveData);
   const treeLayout = calculateTreeLayout(treeData.nodes, treeData.edges);
 
   const [modalEvoIndex, setModalEvoIndex] = useState(0);
   const [isPlayingEvo, setIsPlayingEvo] = useState(false);
+  const [isInputExpanded, setIsInputExpanded] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -231,25 +233,39 @@ export function CompressionStage({ status }: { status: PipelineStatus }) {
 
           {/* Input area */}
           <div className="mb-3">
-            <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1.5">Input (Piped from OCR)</h3>
-            <div className="bg-[#f0f2f5] border border-gray-200 rounded-lg p-2.5 font-mono text-[10px] text-gray-800 shadow-inner overflow-x-auto whitespace-nowrap">
-              Invoice #4821 - Fox jumps over lazy dog - Total: $482.00
+            <div className="flex justify-between items-center mb-1.5">
+              <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase">Input (Piped from OCR)</h3>
+              {ocrText && ocrText.length > 50 && (
+                <button 
+                  onClick={() => setIsInputExpanded(!isInputExpanded)}
+                  className="flex items-center text-[10px] font-bold text-brand-purple hover:text-purple-700 bg-brand-purple/5 hover:bg-brand-purple/10 px-2 py-0.5 rounded transition-colors"
+                >
+                  {isInputExpanded ? (
+                    <>Collapse <ChevronUp className="w-3 h-3 ml-1" /></>
+                  ) : (
+                    <>Expand <ChevronDown className="w-3 h-3 ml-1" /></>
+                  )}
+                </button>
+              )}
+            </div>
+            <div className={`bg-[#f0f2f5] border border-gray-200 rounded-lg p-2.5 font-mono text-[10px] text-gray-800 shadow-inner overflow-x-auto transition-all duration-300 ${isInputExpanded ? 'whitespace-pre-wrap max-h-[250px] overflow-y-auto' : 'whitespace-nowrap'}`}>
+              {ocrText || "Awaiting extracted text from OCR Pipeline..."}
             </div>
           </div>
 
           {/* Metrics Blocks */}
-          <div className="grid grid-cols-3 gap-2 mb-3 lg:mb-4">
-            <div className="bg-[#fcf8ff] border border-brand-purple/10 rounded-xl p-2.5 text-center shadow-sm">
-              <div className="text-lg font-bold text-brand-purple leading-none mb-1">{metrics.ratio}<span className="text-xs">x</span></div>
-              <div className="text-[8px] font-bold text-brand-purple/50 tracking-widest uppercase">Ratio</div>
+          <div className="grid grid-cols-3 gap-2 mb-3 lg:mb-3">
+            <div className="bg-[#fcf8ff] border border-brand-purple/10 rounded-lg py-1.5 px-2 text-center shadow-sm">
+              <div className="text-base font-bold text-brand-purple leading-none mb-0.5">{metrics.ratio}<span className="text-[10px] ml-0.5">x</span></div>
+              <div className="text-[7px] font-bold text-brand-purple/50 tracking-widest uppercase">Ratio</div>
             </div>
-            <div className="bg-[#fff7ed] border border-orange-500/10 rounded-xl p-2.5 text-center shadow-sm">
-              <div className="text-lg font-bold text-orange-500 leading-none mb-1">{metrics.entropy}</div>
-              <div className="text-[8px] font-bold text-orange-500/50 tracking-widest uppercase">Entropy</div>
+            <div className="bg-[#fff7ed] border border-orange-500/10 rounded-lg py-1.5 px-2 text-center shadow-sm">
+              <div className="text-base font-bold text-orange-500 leading-none mb-0.5">{metrics.entropy}</div>
+              <div className="text-[7px] font-bold text-orange-500/50 tracking-widest uppercase">Entropy</div>
             </div>
-            <div className="bg-[#f0fdf4] border border-brand-green/10 rounded-xl p-2.5 text-center shadow-sm">
-              <div className="text-lg font-bold text-brand-green leading-none mb-1">{metrics.efficiency}<span className="text-xs">%</span></div>
-              <div className="text-[8px] font-bold text-brand-green/50 tracking-widest uppercase">Efficiency</div>
+            <div className="bg-[#f0fdf4] border border-brand-green/10 rounded-lg py-1.5 px-2 text-center shadow-sm">
+              <div className="text-base font-bold text-brand-green leading-none mb-0.5">{metrics.efficiency}<span className="text-[10px] ml-0.5">%</span></div>
+              <div className="text-[7px] font-bold text-brand-green/50 tracking-widest uppercase">Efficiency</div>
             </div>
           </div>
 

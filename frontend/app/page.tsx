@@ -6,35 +6,56 @@ import { Header } from "../components/Header";
 import { OCRStage } from "../components/stages/OCRStage";
 import { CompressionStage } from "../components/stages/CompressionStage";
 import { VerificationStage } from "../components/stages/VerificationStage";
-import { PipelineStatus } from "../lib/types";
+import { PipelineStatus, ProcessImageResponse } from "../lib/types";
 
 export default function Home() {
   const [status, setStatus] = useState<PipelineStatus>('idle');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [apiData, setApiData] = useState<ProcessImageResponse | null>(null);
 
-  const runPipeline = () => {
+  const runPipeline = async () => {
     // If complete or idle, start the pipeline
-    if (status === 'complete' || status === 'idle') {
+    if ((status === 'complete' || status === 'idle') && selectedFile) {
       setStatus('ocr');
       
-      // Mock OCR Inference Latency
-      setTimeout(() => {
-        setStatus('compress');
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
         
-        // Mock Huffman Compression Latency
+        const res = await fetch("http://localhost:8000/process-image", {
+          method: "POST",
+          body: formData
+        });
+        
+        if (!res.ok) throw new Error("Pipeline backend failed");
+        
+        const data: ProcessImageResponse = await res.json();
+        setApiData(data);
+        
+        // Artificial UI stepping to show the animations
         setTimeout(() => {
-          setStatus('verify');
+          setStatus('compress');
           
-          // Mock Verification Latency
           setTimeout(() => {
-            setStatus('complete');
+            setStatus('verify');
+            
+            setTimeout(() => {
+              setStatus('complete');
+            }, 1800);
           }, 1800);
-        }, 1800);
-      }, 2500);
+        }, 1200); // 1.2s delay for OCR completion animation
+        
+      } catch (err) {
+        console.error("API call failed:", err);
+        setStatus('idle');
+      }
     }
   };
 
   const resetPipeline = () => {
     setStatus('idle');
+    setApiData(null);
+    setSelectedFile(null);
   };
 
   return (
@@ -51,12 +72,18 @@ export default function Home() {
           
           {/* Core Pipeline UI */}
           <div className={`flex-1 w-full grid gap-4 transition-all duration-300 min-h-0 ${status === 'idle' ? 'grid-cols-1 max-w-3xl mx-auto' : 'grid-cols-1 lg:grid-cols-3 items-stretch'}`}>
-            <OCRStage status={status} onReset={resetPipeline} />
+            <OCRStage 
+              status={status} 
+              onReset={resetPipeline} 
+              selectedFile={selectedFile} 
+              onFileSelect={setSelectedFile} 
+              ocrText={apiData?.ocr_text} 
+            />
             
             {status !== 'idle' && (
               <>
-                <CompressionStage status={status} />
-                <VerificationStage status={status} />
+                <CompressionStage status={status} liveData={apiData?.compression || null} ocrText={apiData?.ocr_text} />
+                <VerificationStage status={status} liveData={apiData || null} />
               </>
             )}
           </div>
@@ -86,17 +113,17 @@ export default function Home() {
             {/* Card 3 */}
             <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">Compression Ratio</h3>
-              <div className="text-xl font-bold text-brand-purple leading-none mb-1 tracking-tight">3.21<span className="text-[11px] font-semibold text-gray-400 ml-0.5">x</span></div>
+              <div className="text-xl font-bold text-brand-purple leading-none mb-1 tracking-tight">{apiData?.compression?.compression_ratio || '0.00'}<span className="text-[11px] font-semibold text-gray-400 ml-0.5">x</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">vs raw text size</div>
               <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="bg-brand-purple h-full rounded-full" style={{ width: '60%' }}></div>
+                <div className="bg-brand-purple h-full rounded-full" style={{ width: `${Math.min(100, (apiData?.compression?.compression_ratio || 0) * 20)}%` }}></div>
               </div>
             </div>
 
             {/* Card 4 */}
             <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">Entropy</h3>
-              <div className="text-xl font-bold text-orange-500 leading-none mb-1 tracking-tight">4.87</div>
+              <div className="text-xl font-bold text-orange-500 leading-none mb-1 tracking-tight">{apiData?.compression?.entropy || '0.00'}</div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">bits / symbol</div>
               <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
                 <div className="bg-orange-500 h-full rounded-full" style={{ width: '70%' }}></div>
@@ -106,20 +133,20 @@ export default function Home() {
             {/* Card 5 */}
             <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">Encoding Efficiency</h3>
-              <div className="text-xl font-bold text-brand-green leading-none mb-1 tracking-tight">96.2<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
+              <div className="text-xl font-bold text-brand-green leading-none mb-1 tracking-tight">{apiData?.compression?.encoding_efficiency || '0.0'}<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">Huffman quality</div>
               <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="bg-brand-green h-full rounded-full" style={{ width: '96.2%' }}></div>
+                <div className="bg-brand-green h-full rounded-full" style={{ width: `${apiData?.compression?.encoding_efficiency || 0}%` }}></div>
               </div>
             </div>
 
             {/* Card 6 */}
             <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">E2E Latency</h3>
-              <div className="text-xl font-bold text-gray-900 leading-none mb-1 tracking-tight">230<span className="text-[11px] font-semibold text-gray-400 ml-1">ms</span></div>
+              <div className="text-xl font-bold text-gray-900 leading-none mb-1 tracking-tight">{apiData?.total_latency || '0'}<span className="text-[11px] font-semibold text-gray-400 ml-1">ms</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">benchmarked</div>
               <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="bg-gray-400 h-full rounded-full" style={{ width: '40%' }}></div>
+                <div className="bg-gray-400 h-full rounded-full" style={{ width: '100%' }}></div>
               </div>
             </div>
           </div>

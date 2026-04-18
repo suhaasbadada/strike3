@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes.compression_routes import router as compression_router
+from app.api.routes.ocr_routes import router as ocr_router
 
 app = FastAPI(title="Strike3 Backend")
 
@@ -14,6 +15,7 @@ app.add_middleware(
 )
 
 app.include_router(compression_router)
+app.include_router(ocr_router)
 
 @app.get("/")
 def root():

@@ -39,3 +39,22 @@ export interface CompressionData {
     };
     steps: Step[];
 }
+
+export interface VerificationData {
+    is_lossless: boolean;
+    char_match: number;
+    char_total: number;
+    match_percentage: number;
+}
+
+export interface ProcessImageResponse {
+    ocr_text: string;
+    ocr_latency: number;
+    compression: CompressionData;
+    decompression: {
+        text: string;
+        latency: number;
+    };
+    verification: VerificationData;
+    total_latency: number;
+}
