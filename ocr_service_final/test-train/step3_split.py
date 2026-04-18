@@ -24,8 +24,7 @@ import cv2
 import numpy as np
 
 
-# ── Preprocessing (locked: Otsu + gentle erosion) ─────────────────────────────
-
+# Preprocessing (locked: Otsu + gentle erosion)
 def preprocess(gray: np.ndarray) -> np.ndarray:
     """Auto-detect image polarity so text is always white on black."""
     if gray.mean() < 127:
@@ -35,8 +34,7 @@ def preprocess(gray: np.ndarray) -> np.ndarray:
     return binary
 
 
-# ── Line segmentation (locked from Step 2) ────────────────────────────────────
-
+# Line segmentation (locked from Step 2)
 def find_lines(binary: np.ndarray) -> list[tuple[int, int]]:
     h_proj = binary.sum(axis=1)
     threshold = binary.shape[1] * 0.01
@@ -76,7 +74,7 @@ def find_chunks_in_line(binary: np.ndarray, y_start: int, y_end: int) -> list[di
     return sorted(chunks, key=lambda c: c["x"])
 
 
-# ── Step 3: Estimate char width + split wide blobs ─────────────────────────────
+# Step 3: Estimate char width + split wide blobs
 
 def estimate_line_stats(chunks: list[dict]) -> dict:
     """Estimate per-line stats: median width, height, aspect ratio."""
@@ -211,8 +209,7 @@ def split_all_lines(binary, lines_chunks):
     return split_lines
 
 
-# ── Visualization helper ───────────────────────────────────────────────────────
-
+# Visualization helper
 def draw_boxes(gray, lines, title=""):
     vis = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
     colors = [(0,255,0),(0,180,255),(255,100,0),(180,0,255),(0,255,200),(255,255,0)]
@@ -226,9 +223,6 @@ def draw_boxes(gray, lines, title=""):
     if title:
         cv2.putText(vis, title, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,255,255), 2)
     return vis
-
-
-# ── Main ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

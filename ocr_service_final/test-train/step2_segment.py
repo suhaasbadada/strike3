@@ -19,7 +19,7 @@ import cv2
 import numpy as np
 
 
-# ── Step 1: Preprocessing ──────────────────────────────────────────────────────
+# Step 1: Preprocessing 
 
 def preprocess(gray: np.ndarray) -> np.ndarray:
     """Variant A + gentle erosion — best balance of stroke preservation vs separation."""
@@ -29,7 +29,7 @@ def preprocess(gray: np.ndarray) -> np.ndarray:
     return binary
 
 
-# ── Step 2: Line segmentation via horizontal projection ────────────────────────
+# Step 2: Line segmentation via horizontal projection
 
 def find_lines(binary: np.ndarray) -> list[tuple[int, int]]:
     """
@@ -59,7 +59,7 @@ def find_lines(binary: np.ndarray) -> list[tuple[int, int]]:
     return lines
 
 
-# ── Step 3: Get chunks within a line via connected components ──────────────────
+# Step 3: Get chunks within a line via connected components
 
 def find_chunks_in_line(binary: np.ndarray, y_start: int, y_end: int) -> list[dict]:
     """Extract connected component blobs within a line strip."""
@@ -91,7 +91,7 @@ def find_chunks_in_line(binary: np.ndarray, y_start: int, y_end: int) -> list[di
     return sorted(chunks, key=lambda c: c["x"])
 
 
-# ── Step 4: Split wide chunks via vertical projection valleys ──────────────────
+# Step 4: Split wide chunks via vertical projection valleys
 
 def estimate_char_width(chunks: list[dict]) -> float:
     """Median width of all chunks as a proxy for single character width."""
@@ -149,7 +149,7 @@ def split_chunk(binary: np.ndarray, chunk: dict, expected_w: float) -> list[dict
     return result
 
 
-# ── Full pipeline ──────────────────────────────────────────────────────────────
+# Full pipeline
 
 def segment(binary: np.ndarray) -> tuple[list[list[dict]], list[tuple[int,int]]]:
     """Returns (lines_of_chars, line_bounds) where each line is a list of char dicts."""
@@ -186,7 +186,7 @@ def segment(binary: np.ndarray) -> tuple[list[list[dict]], list[tuple[int,int]]]
     return split_lines, line_bounds
 
 
-# ── Main ───────────────────────────────────────────────────────────────────────
+# Main
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

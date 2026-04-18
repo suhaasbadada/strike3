@@ -44,7 +44,7 @@ def load_models():
     vocab = load_vocab(str(CSV_PATH))
 
 
-# ── Request / Response ─────────────────────────────────────────────────────────
+# Request / Response
 
 class OCRRequest(BaseModel):
     image: str
@@ -61,7 +61,7 @@ class OCRResponse(BaseModel):
     latency_ms: float
 
 
-# ── Endpoints ──────────────────────────────────────────────────────────────────
+# Endpoints
 
 @app.get("/health")
 def health():
@@ -118,7 +118,7 @@ def ocr(request: OCRRequest):
     )
 
 
-# ── Pipeline helpers ───────────────────────────────────────────────────────────
+# Pipeline helpers
 
 def _preprocess(gray: np.ndarray) -> np.ndarray:
     if gray.mean() < 127:

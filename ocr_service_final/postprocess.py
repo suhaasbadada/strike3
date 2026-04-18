@@ -20,7 +20,7 @@ import csv
 from pathlib import Path
 
 
-# ── Layer 1: Char substitution rules ──────────────────────────────────────────
+# Layer 1: Char substitution rules
 
 CHAR_RULES = [
     (r'(?<=[a-zA-Z])0(?=[a-zA-Z])', 'o'),   # 0 between letters → o
@@ -55,7 +55,7 @@ def apply_char_rules(text: str) -> str:
     return text
 
 
-# ── Layer 2: Domain vocabulary from CSV ───────────────────────────────────────
+# Layer 2: Domain vocabulary from CSV
 
 def load_vocab(csv_path: str) -> set[str]:
     """Extract all unique words from ground truth text in tesseract_metadata.csv."""
@@ -157,7 +157,7 @@ def apply_domain_correction(text: str, vocab: set[str]) -> str:
     return '\n'.join(corrected)
 
 
-# ── Layer 3: Conservative spell correction ────────────────────────────────────
+# Layer 3: Conservative spell correction
 
 def apply_spell_correction(text: str) -> str:
     """Only correct words with edit distance 1 and high confidence."""
@@ -190,9 +190,6 @@ def apply_spell_correction(text: str) -> str:
 
     return '\n'.join(corrected)
 
-
-# ── Public API ─────────────────────────────────────────────────────────────────
-
 def clean(text: str, vocab: set = None, spell: bool = True) -> dict:
     """
     Returns dict with all three layers preserved:
@@ -211,9 +208,6 @@ def clean(text: str, vocab: set = None, spell: bool = True) -> dict:
         "layer2": layer2,
         "layer3": layer3,
     }
-
-
-# ── Standalone ─────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

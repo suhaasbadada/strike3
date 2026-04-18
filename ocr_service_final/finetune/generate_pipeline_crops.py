@@ -25,13 +25,13 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-# ── EMNIST class mapping ───────────────────────────────────────────────────────
+# EMNIST class mapping
 
 EMNIST_CHARS = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabdefghnqrt'
 CHAR_TO_LABEL = {c: i for i, c in enumerate(EMNIST_CHARS)}
 
 
-# ── Fonts to render with ───────────────────────────────────────────────────────
+# Fonts to render with
 
 FONTS = [
     "/System/Library/Fonts/Helvetica.ttc",
@@ -58,7 +58,6 @@ FONTS = [
 
 FONT_SIZES = [18, 20, 22, 24, 26]
 
-
 def load_fonts() -> list[tuple]:
     loaded = []
     for path in FONTS:
@@ -74,7 +73,7 @@ def load_fonts() -> list[tuple]:
     return loaded
 
 
-# ── Pipeline (must match step3_split.py exactly) ───────────────────────────────
+# Pipeline (must match step3_split.py exactly)
 
 def preprocess(gray: np.ndarray) -> np.ndarray:
     _, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
@@ -98,8 +97,7 @@ def normalize_crop(crop: np.ndarray) -> np.ndarray:
     return cv2.resize(padded, (28, 28), interpolation=cv2.INTER_AREA)
 
 
-# ── Render a single character and extract crop via pipeline ───────────────────
-
+# Render a single character and extract crop via pipeline
 def render_single_char(char: str, font, canvas_size=80) -> np.ndarray:
     """Render one char on white background (document style) → run pipeline."""
     img = Image.new("L", (canvas_size, canvas_size), color=255)  # white bg
@@ -130,7 +128,7 @@ def render_single_char(char: str, font, canvas_size=80) -> np.ndarray:
     return normalize_crop(crop)
 
 
-# ── Verification grid ─────────────────────────────────────────────────────────
+# Verification grid
 
 def save_verification_grid(samples: list[tuple], out_path: str, cols: int = 20):
     """
@@ -166,7 +164,7 @@ def save_verification_grid(samples: list[tuple], out_path: str, cols: int = 20):
     print(f"Grid: {rows} rows × {cols} cols = {len(samples)} samples")
 
 
-# ── Main generation loop ───────────────────────────────────────────────────────
+# Main generation loop
 
 def generate(args):
     out_dir = Path(args.output_dir)

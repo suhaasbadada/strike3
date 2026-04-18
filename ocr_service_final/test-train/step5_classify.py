@@ -13,6 +13,7 @@ Output:
 """
 
 import argparse
+import sys
 from pathlib import Path
 
 import cv2
@@ -21,11 +22,16 @@ import torch
 from PIL import Image
 from torchvision import transforms
 
+# Allow imports from project root when running this script directly.
+ROOT_DIR = Path(__file__).resolve().parents[1]
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 from model_printed import load_printed_model, label_to_char
 from postprocess import clean, load_vocab
 
 
-# ── Preprocessing (locked from Step 1) ────────────────────────────────────────
+# Preprocessing (locked from Step 1)
 
 def preprocess(gray: np.ndarray) -> np.ndarray:
     """Auto-detect image polarity so text is always white on black."""
@@ -36,7 +42,7 @@ def preprocess(gray: np.ndarray) -> np.ndarray:
     return binary
 
 
-# ── Segmentation (locked from Steps 2 & 3) ────────────────────────────────────
+# Segmentation (locked from Steps 2 & 3)
 
 def find_lines(binary: np.ndarray) -> list[tuple[int, int]]:
     h_proj = binary.sum(axis=1)
@@ -115,7 +121,6 @@ def estimate_line_stats(chunks):
     lower_w = widths[:max(1, len(widths) // 2)]
     return {"expected_w": float(np.median(lower_w)), "median_h": float(np.median(heights))}
 
-
 def is_suspicious(blob, expected_w, median_h):
     w, h = blob["w"], blob["h"]
     if w > expected_w * 1.6:
@@ -124,7 +129,6 @@ def is_suspicious(blob, expected_w, median_h):
         return True
     return False
 
-
 def validate_piece(piece, expected_w, binary):
     if piece["w"] < expected_w * 0.3:
         return False
@@ -132,10 +136,8 @@ def validate_piece(piece, expected_w, binary):
     crop = binary[y:y+h, x:x+w]
     return (crop > 0).sum() / max(crop.size, 1) >= 0.03
 
-
 def make_blob(x, y, w, h, crop_slice):
     return {"x": x, "y": y, "w": w, "h": h, "cx": x+w/2, "cy": y+h/2, "area": int(crop_slice.sum())}
-
 
 def normalize_crop(crop: np.ndarray) -> np.ndarray:
     """Tight trim → add margin → pad to square → resize 28x28."""
@@ -156,7 +158,6 @@ def normalize_crop(crop: np.ndarray) -> np.ndarray:
     padded[y_off:y_off+ch, x_off:x_off+cw] = crop
     return cv2.resize(padded, (28, 28), interpolation=cv2.INTER_AREA)
 
-
 def detect_spaces(line_blobs: list[dict]) -> list[bool]:
     """Returns space flags — True if a word space precedes this char."""
     flags = [False] * len(line_blobs)
@@ -167,7 +168,6 @@ def detect_spaces(line_blobs: list[dict]) -> list[bool]:
         gap = line_blobs[i]["x"] - (line_blobs[i-1]["x"] + line_blobs[i-1]["w"])
         flags[i] = gap > median_w * 0.5
     return flags
-
 
 def get_all_crops(binary: np.ndarray) -> tuple[list[np.ndarray], list[bool], list[int]]:
     """Returns (crops, space_flags, line_indices)."""
@@ -203,11 +203,9 @@ def get_all_crops(binary: np.ndarray) -> tuple[list[np.ndarray], list[bool], lis
 
     return all_crops, all_spaces, all_lines
 
-
-# ── CNN inference ──────────────────────────────────────────────────────────────
+# CNN inference
 
 TRANSFORM = transforms.ToTensor()
-
 
 def classify_crops(crops: list[np.ndarray], model, device) -> list[dict]:
     tensors = []
@@ -230,9 +228,6 @@ def classify_crops(crops: list[np.ndarray], model, device) -> list[dict]:
             "top3": [(label_to_char(int(top3_idxs[j].item())), top3_probs[j].item()) for j in range(3)],
         })
     return results
-
-
-# ── Main ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
