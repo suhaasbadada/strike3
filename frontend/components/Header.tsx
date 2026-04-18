@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react";
 
 export function Header() {
   return (
-    <header className="flex flex-col items-center pt-8 pb-4 bg-white/80 backdrop-blur-md sticky top-0 z-10 border-b border-gray-200">
+    <header className="flex flex-col items-center pt-8 pb-4 bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200">
       {/* Title Area */}
       <h1 className="text-3xl font-bold text-gray-900 mb-2 tracking-tight">Neural compression pipeline</h1>
       <p className="text-sm text-gray-500 mb-6 font-medium">
