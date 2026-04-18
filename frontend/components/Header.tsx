@@ -9,9 +9,6 @@ export function Header({ status, onAction }: { status: PipelineStatus, onAction:
   return (
     <header className="flex flex-col items-center pt-4 pb-3 bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200 shrink-0">
       <h1 className="text-2xl font-bold text-gray-900 mb-1 tracking-tight">Neural compression pipeline</h1>
-      <p className="text-xs text-gray-500 mb-4 font-medium">
-        Scanned image &rarr; CNN OCR &rarr; adaptive Huffman encoding &rarr; lossless recovery
-      </p>
 
       {/* Step Indicator */}
       <div className="flex items-center space-x-2 bg-gray-50/80 border border-gray-200 rounded-full px-4 py-1.5 mb-5 shadow-sm backdrop-blur transition-all">
@@ -53,8 +50,8 @@ export function Header({ status, onAction }: { status: PipelineStatus, onAction:
             </div>
           </div>
         </div>
-        
-        <button 
+
+        <button
           onClick={onAction}
           disabled={status !== 'idle' && status !== 'complete'}
           className={`text-white text-sm font-semibold py-2 px-5 rounded-full transition-all duration-200 flex items-center shadow-md hover:shadow-lg active:scale-95 ${status === 'complete' ? 'bg-gray-800 hover:bg-black' : 'bg-brand-blue hover:bg-blue-600'} disabled:opacity-50 disabled:pointer-events-none disabled:active:scale-100`}

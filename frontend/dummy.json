@@ -1,0 +1,3612 @@
+{
+    "compressed_data": "000000000000000000000000100110100000000000000000000000101000111101110011001110101000110100000001100001101000100011000101100011001000100001010000000100000100101001100100100001100010100010001001101000100001001001011000000100000100000100011011100100010010001000101100101100101110100010011110001011001011001111101110010010000001001110011100101110100010011110001011001011001001010001101001111110100001110111001010000011100100100000011110010010110100100011001010110001000110111110011001101000011010101011001011101100011001100010001101100011011101101110001100111110001111110001110110000110011100011100001010001111110001111000111110011111011110110011010011111100010110000001000010010111011100011111000101100000011010100101011100",
+    "compression_ratio": 1.71,
+    "entropy": 3.2,
+    "encoding_efficiency": 68.52,
+    "original_size": 154,
+    "compressed_size": 90,
+    "latency": 3,
+    "huffman_tree": {
+        "root": "* (154)",
+        "structure": {
+            "nodes": [
+                {
+                    "id": 512,
+                    "weight": 154,
+                    "symbol": null,
+                    "label": "* (154)"
+                },
+                {
+                    "id": 510,
+                    "weight": 107,
+                    "symbol": null,
+                    "label": "* (107)"
+                },
+                {
+                    "id": 508,
+                    "weight": 69,
+                    "symbol": null,
+                    "label": "* (69)"
+                },
+                {
+                    "id": 506,
+                    "weight": 20,
+                    "symbol": 115,
+                    "label": "115 (20)"
+                },
+                {
+                    "id": 507,
+                    "weight": 49,
+                    "symbol": 97,
+                    "label": "97 (49)"
+                },
+                {
+                    "id": 509,
+                    "weight": 38,
+                    "symbol": null,
+                    "label": "* (38)"
+                },
+                {
+                    "id": 502,
+                    "weight": 15,
+                    "symbol": null,
+                    "label": "* (15)"
+                },
+                {
+                    "id": 494,
+                    "weight": 6,
+                    "symbol": 121,
+                    "label": "121 (6)"
+                },
+                {
+                    "id": 495,
+                    "weight": 9,
+                    "symbol": null,
+                    "label": "* (9)"
+                },
+                {
+                    "id": 491,
+                    "weight": 5,
+                    "symbol": 110,
+                    "label": "110 (5)"
+                },
+                {
+                    "id": 490,
+                    "weight": 4,
+                    "symbol": null,
+                    "label": "* (4)"
+                },
+                {
+                    "id": 486,
+                    "weight": 2,
+                    "symbol": 114,
+                    "label": "114 (2)"
+                },
+                {
+                    "id": 487,
+                    "weight": 2,
+                    "symbol": null,
+                    "label": "* (2)"
+                },
+                {
+                    "id": 484,
+                    "weight": 1,
+                    "symbol": 119,
+                    "label": "119 (1)"
+                },
+                {
+                    "id": 485,
+                    "weight": 1,
+                    "symbol": 106,
+                    "label": "106 (1)"
+                },
+                {
+                    "id": 503,
+                    "weight": 23,
+                    "symbol": null,
+                    "label": "* (23)"
+                },
+                {
+                    "id": 498,
+                    "weight": 11,
+                    "symbol": null,
+                    "label": "* (11)"
+                },
+                {
+                    "id": 493,
+                    "weight": 6,
+                    "symbol": 105,
+                    "label": "105 (6)"
+                },
+                {
+                    "id": 492,
+                    "weight": 5,
+                    "symbol": 32,
+                    "label": "32 (5)"
+                },
+                {
+                    "id": 499,
+                    "weight": 12,
+                    "symbol": 98,
+                    "label": "98 (12)"
+                },
+                {
+                    "id": 511,
+                    "weight": 47,
+                    "symbol": null,
+                    "label": "* (47)"
+                },
+                {
+                    "id": 504,
+                    "weight": 18,
+                    "symbol": 104,
+                    "label": "104 (18)"
+                },
+                {
+                    "id": 505,
+                    "weight": 29,
+                    "symbol": null,
+                    "label": "* (29)"
+                },
+                {
+                    "id": 501,
+                    "weight": 15,
+                    "symbol": 100,
+                    "label": "100 (15)"
+                },
+                {
+                    "id": 500,
+                    "weight": 14,
+                    "symbol": null,
+                    "label": "* (14)"
+                },
+                {
+                    "id": 496,
+                    "weight": 7,
+                    "symbol": 117,
+                    "label": "117 (7)"
+                },
+                {
+                    "id": 497,
+                    "weight": 7,
+                    "symbol": null,
+                    "label": "* (7)"
+                },
+                {
+                    "id": 488,
+                    "weight": 2,
+                    "symbol": null,
+                    "label": "* (2)"
+                },
+                {
+                    "id": 482,
+                    "weight": 1,
+                    "symbol": null,
+                    "label": "* (1)"
+                },
+                {
+                    "id": 480,
+                    "weight": 0,
+                    "symbol": "NYT",
+                    "label": "NYT (0)"
+                },
+                {
+                    "id": 481,
+                    "weight": 1,
+                    "symbol": 101,
+                    "label": "101 (1)"
+                },
+                {
+                    "id": 483,
+                    "weight": 1,
+                    "symbol": 111,
+                    "label": "111 (1)"
+                },
+                {
+                    "id": 489,
+                    "weight": 5,
+                    "symbol": 103,
+                    "label": "103 (5)"
+                }
+            ],
+            "edges": [
+                {
+                    "from": 512,
+                    "to": 510,
+                    "label": "0"
+                },
+                {
+                    "from": 510,
+                    "to": 508,
+                    "label": "0"
+                },
+                {
+                    "from": 508,
+                    "to": 506,
+                    "label": "0"
+                },
+                {
+                    "from": 508,
+                    "to": 507,
+                    "label": "1"
+                },
+                {
+                    "from": 510,
+                    "to": 509,
+                    "label": "1"
+                },
+                {
+                    "from": 509,
+                    "to": 502,
+                    "label": "0"
+                },
+                {
+                    "from": 502,
+                    "to": 494,
+                    "label": "0"
+                },
+                {
+                    "from": 502,
+                    "to": 495,
+                    "label": "1"
+                },
+                {
+                    "from": 495,
+                    "to": 491,
+                    "label": "0"
+                },
+                {
+                    "from": 495,
+                    "to": 490,
+                    "label": "1"
+                },
+                {
+                    "from": 490,
+                    "to": 486,
+                    "label": "0"
+                },
+                {
+                    "from": 490,
+                    "to": 487,
+                    "label": "1"
+                },
+                {
+                    "from": 487,
+                    "to": 484,
+                    "label": "0"
+                },
+                {
+                    "from": 487,
+                    "to": 485,
+                    "label": "1"
+                },
+                {
+                    "from": 509,
+                    "to": 503,
+                    "label": "1"
+                },
+                {
+                    "from": 503,
+                    "to": 498,
+                    "label": "0"
+                },
+                {
+                    "from": 498,
+                    "to": 493,
+                    "label": "0"
+                },
+                {
+                    "from": 498,
+                    "to": 492,
+                    "label": "1"
+                },
+                {
+                    "from": 503,
+                    "to": 499,
+                    "label": "1"
+                },
+                {
+                    "from": 512,
+                    "to": 511,
+                    "label": "1"
+                },
+                {
+                    "from": 511,
+                    "to": 504,
+                    "label": "0"
+                },
+                {
+                    "from": 511,
+                    "to": 505,
+                    "label": "1"
+                },
+                {
+                    "from": 505,
+                    "to": 501,
+                    "label": "0"
+                },
+                {
+                    "from": 505,
+                    "to": 500,
+                    "label": "1"
+                },
+                {
+                    "from": 500,
+                    "to": 496,
+                    "label": "0"
+                },
+                {
+                    "from": 500,
+                    "to": 497,
+                    "label": "1"
+                },
+                {
+                    "from": 497,
+                    "to": 488,
+                    "label": "0"
+                },
+                {
+                    "from": 488,
+                    "to": 482,
+                    "label": "0"
+                },
+                {
+                    "from": 482,
+                    "to": 480,
+                    "label": "0"
+                },
+                {
+                    "from": 482,
+                    "to": 481,
+                    "label": "1"
+                },
+                {
+                    "from": 488,
+                    "to": 483,
+                    "label": "1"
+                },
+                {
+                    "from": 497,
+                    "to": 489,
+                    "label": "1"
+                }
+            ]
+        }
+    },
+    "steps": [
+        {
+            "index": 0,
+            "symbol": 115,
+            "char": "s",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    }
+                ],
+                "edges": []
+            }
+        },
+        {
+            "index": 15,
+            "symbol": 104,
+            "char": "h",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 13,
+                        "symbol": null,
+                        "label": "* (13)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 8,
+                        "symbol": null,
+                        "label": "* (8)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 3,
+                        "symbol": 115,
+                        "label": "115 (3)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 5,
+                        "symbol": null,
+                        "label": "* (5)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 1,
+                        "symbol": 32,
+                        "label": "32 (1)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 1,
+                        "symbol": 98,
+                        "label": "98 (1)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 3,
+                        "symbol": null,
+                        "label": "* (3)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 1,
+                        "symbol": 104,
+                        "label": "104 (1)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 2,
+                        "symbol": 117,
+                        "label": "117 (2)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 5,
+                        "symbol": 97,
+                        "label": "97 (5)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 2,
+                        "symbol": 100,
+                        "label": "100 (2)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 507,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 504,
+                        "to": 500,
+                        "label": "0"
+                    },
+                    {
+                        "from": 500,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 500,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 504,
+                        "to": 501,
+                        "label": "1"
+                    },
+                    {
+                        "from": 507,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 505,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 30,
+            "symbol": 97,
+            "char": "a",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 30,
+                        "symbol": null,
+                        "label": "* (30)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 23,
+                        "symbol": null,
+                        "label": "* (23)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 2,
+                        "symbol": 98,
+                        "label": "98 (2)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 2,
+                        "symbol": 32,
+                        "label": "32 (2)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 11,
+                        "symbol": 97,
+                        "label": "97 (11)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 8,
+                        "symbol": null,
+                        "label": "* (8)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 3,
+                        "symbol": 104,
+                        "label": "104 (3)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 5,
+                        "symbol": 115,
+                        "label": "115 (5)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 3,
+                        "symbol": 117,
+                        "label": "117 (3)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 4,
+                        "symbol": 100,
+                        "label": "100 (4)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 500,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 501,
+                        "label": "1"
+                    },
+                    {
+                        "from": 501,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 501,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 509,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 503,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 45,
+            "symbol": 98,
+            "char": "b",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 45,
+                        "symbol": null,
+                        "label": "* (45)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 34,
+                        "symbol": null,
+                        "label": "* (34)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 24,
+                        "symbol": null,
+                        "label": "* (24)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 4,
+                        "symbol": 104,
+                        "label": "104 (4)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 3,
+                        "symbol": null,
+                        "label": "* (3)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 3,
+                        "symbol": 32,
+                        "label": "32 (3)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 17,
+                        "symbol": 97,
+                        "label": "97 (17)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 10,
+                        "symbol": null,
+                        "label": "* (10)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 4,
+                        "symbol": 117,
+                        "label": "117 (4)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 6,
+                        "symbol": 100,
+                        "label": "100 (6)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 11,
+                        "symbol": null,
+                        "label": "* (11)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 3,
+                        "symbol": 98,
+                        "label": "98 (3)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 8,
+                        "symbol": 115,
+                        "label": "115 (8)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 500,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 500,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 509,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 503,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 60,
+            "symbol": 97,
+            "char": "a",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 60,
+                        "symbol": null,
+                        "label": "* (60)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 45,
+                        "symbol": null,
+                        "label": "* (45)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 33,
+                        "symbol": null,
+                        "label": "* (33)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 10,
+                        "symbol": null,
+                        "label": "* (10)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 5,
+                        "symbol": 117,
+                        "label": "117 (5)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 5,
+                        "symbol": 104,
+                        "label": "104 (5)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 23,
+                        "symbol": 97,
+                        "label": "97 (23)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 12,
+                        "symbol": null,
+                        "label": "* (12)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 3,
+                        "symbol": null,
+                        "label": "* (3)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 3,
+                        "symbol": 32,
+                        "label": "32 (3)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 9,
+                        "symbol": 100,
+                        "label": "100 (9)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 5,
+                        "symbol": 98,
+                        "label": "98 (5)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 10,
+                        "symbol": 115,
+                        "label": "115 (10)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 75,
+            "symbol": 115,
+            "char": "s",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 75,
+                        "symbol": null,
+                        "label": "* (75)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 57,
+                        "symbol": null,
+                        "label": "* (57)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 42,
+                        "symbol": null,
+                        "label": "* (42)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 12,
+                        "symbol": null,
+                        "label": "* (12)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 6,
+                        "symbol": 104,
+                        "label": "104 (6)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 6,
+                        "symbol": 98,
+                        "label": "98 (6)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 30,
+                        "symbol": 97,
+                        "label": "97 (30)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 3,
+                        "symbol": null,
+                        "label": "* (3)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 3,
+                        "symbol": 32,
+                        "label": "32 (3)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 12,
+                        "symbol": 115,
+                        "label": "115 (12)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 18,
+                        "symbol": null,
+                        "label": "* (18)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 6,
+                        "symbol": 117,
+                        "label": "117 (6)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 12,
+                        "symbol": 100,
+                        "label": "100 (12)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 506,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 90,
+            "symbol": 104,
+            "char": "h",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 90,
+                        "symbol": null,
+                        "label": "* (90)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 69,
+                        "symbol": null,
+                        "label": "* (69)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 51,
+                        "symbol": null,
+                        "label": "* (51)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 15,
+                        "symbol": 115,
+                        "label": "115 (15)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 36,
+                        "symbol": 97,
+                        "label": "97 (36)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 18,
+                        "symbol": null,
+                        "label": "* (18)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 1,
+                        "symbol": 105,
+                        "label": "105 (1)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 3,
+                        "symbol": 32,
+                        "label": "32 (3)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 14,
+                        "symbol": 100,
+                        "label": "100 (14)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 21,
+                        "symbol": null,
+                        "label": "* (21)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 7,
+                        "symbol": 98,
+                        "label": "98 (7)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 14,
+                        "symbol": null,
+                        "label": "* (14)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 7,
+                        "symbol": 104,
+                        "label": "104 (7)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 497,
+                        "label": "1"
+                    },
+                    {
+                        "from": 502,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 505,
+                        "to": 500,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 105,
+            "symbol": 104,
+            "char": "h",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 105,
+                        "symbol": null,
+                        "label": "* (105)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 78,
+                        "symbol": null,
+                        "label": "* (78)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 55,
+                        "symbol": null,
+                        "label": "* (55)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 15,
+                        "symbol": 115,
+                        "label": "115 (15)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 40,
+                        "symbol": 97,
+                        "label": "97 (40)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 23,
+                        "symbol": null,
+                        "label": "* (23)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 8,
+                        "symbol": 98,
+                        "label": "98 (8)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 8,
+                        "symbol": 104,
+                        "label": "104 (8)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 27,
+                        "symbol": null,
+                        "label": "* (27)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 12,
+                        "symbol": null,
+                        "label": "* (12)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 6,
+                        "symbol": null,
+                        "label": "* (6)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 492,
+                        "weight": 2,
+                        "symbol": 114,
+                        "label": "114 (2)"
+                    },
+                    {
+                        "id": 493,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 486,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 484,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 485,
+                        "weight": 1,
+                        "symbol": 106,
+                        "label": "106 (1)"
+                    },
+                    {
+                        "id": 487,
+                        "weight": 1,
+                        "symbol": 111,
+                        "label": "111 (1)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 490,
+                        "weight": 1,
+                        "symbol": 105,
+                        "label": "105 (1)"
+                    },
+                    {
+                        "id": 491,
+                        "weight": 1,
+                        "symbol": 121,
+                        "label": "121 (1)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 6,
+                        "symbol": null,
+                        "label": "* (6)"
+                    },
+                    {
+                        "id": 494,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 488,
+                        "weight": 1,
+                        "symbol": 119,
+                        "label": "119 (1)"
+                    },
+                    {
+                        "id": 489,
+                        "weight": 1,
+                        "symbol": 101,
+                        "label": "101 (1)"
+                    },
+                    {
+                        "id": 495,
+                        "weight": 4,
+                        "symbol": 32,
+                        "label": "32 (4)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 15,
+                        "symbol": 100,
+                        "label": "100 (15)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 503,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 504,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 496,
+                        "to": 492,
+                        "label": "0"
+                    },
+                    {
+                        "from": 496,
+                        "to": 493,
+                        "label": "1"
+                    },
+                    {
+                        "from": 493,
+                        "to": 486,
+                        "label": "0"
+                    },
+                    {
+                        "from": 486,
+                        "to": 484,
+                        "label": "0"
+                    },
+                    {
+                        "from": 486,
+                        "to": 485,
+                        "label": "1"
+                    },
+                    {
+                        "from": 493,
+                        "to": 487,
+                        "label": "1"
+                    },
+                    {
+                        "from": 498,
+                        "to": 497,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 490,
+                        "label": "0"
+                    },
+                    {
+                        "from": 497,
+                        "to": 491,
+                        "label": "1"
+                    },
+                    {
+                        "from": 504,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 499,
+                        "to": 494,
+                        "label": "0"
+                    },
+                    {
+                        "from": 494,
+                        "to": 488,
+                        "label": "0"
+                    },
+                    {
+                        "from": 494,
+                        "to": 489,
+                        "label": "1"
+                    },
+                    {
+                        "from": 499,
+                        "to": 495,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 120,
+            "symbol": 110,
+            "char": "n",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 120,
+                        "symbol": null,
+                        "label": "* (120)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 86,
+                        "symbol": null,
+                        "label": "* (86)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 60,
+                        "symbol": null,
+                        "label": "* (60)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 17,
+                        "symbol": 115,
+                        "label": "115 (17)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 43,
+                        "symbol": 97,
+                        "label": "97 (43)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 26,
+                        "symbol": null,
+                        "label": "* (26)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 11,
+                        "symbol": 104,
+                        "label": "104 (11)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 15,
+                        "symbol": 100,
+                        "label": "100 (15)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 34,
+                        "symbol": null,
+                        "label": "* (34)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 14,
+                        "symbol": null,
+                        "label": "* (14)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 492,
+                        "weight": 3,
+                        "symbol": 105,
+                        "label": "105 (3)"
+                    },
+                    {
+                        "id": 493,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 490,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 486,
+                        "weight": 1,
+                        "symbol": 101,
+                        "label": "101 (1)"
+                    },
+                    {
+                        "id": 487,
+                        "weight": 1,
+                        "symbol": 111,
+                        "label": "111 (1)"
+                    },
+                    {
+                        "id": 491,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 484,
+                        "weight": 1,
+                        "symbol": 119,
+                        "label": "119 (1)"
+                    },
+                    {
+                        "id": 485,
+                        "weight": 1,
+                        "symbol": 106,
+                        "label": "106 (1)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 20,
+                        "symbol": null,
+                        "label": "* (20)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 11,
+                        "symbol": null,
+                        "label": "* (11)"
+                    },
+                    {
+                        "id": 494,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 488,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 482,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 480,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 481,
+                        "weight": 1,
+                        "symbol": 103,
+                        "label": "103 (1)"
+                    },
+                    {
+                        "id": 483,
+                        "weight": 1,
+                        "symbol": 110,
+                        "label": "110 (1)"
+                    },
+                    {
+                        "id": 489,
+                        "weight": 2,
+                        "symbol": 114,
+                        "label": "114 (2)"
+                    },
+                    {
+                        "id": 495,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 4,
+                        "symbol": 32,
+                        "label": "32 (4)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 3,
+                        "symbol": 121,
+                        "label": "121 (3)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 9,
+                        "symbol": 98,
+                        "label": "98 (9)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 504,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 504,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 499,
+                        "to": 492,
+                        "label": "0"
+                    },
+                    {
+                        "from": 499,
+                        "to": 493,
+                        "label": "1"
+                    },
+                    {
+                        "from": 493,
+                        "to": 490,
+                        "label": "0"
+                    },
+                    {
+                        "from": 490,
+                        "to": 486,
+                        "label": "0"
+                    },
+                    {
+                        "from": 490,
+                        "to": 487,
+                        "label": "1"
+                    },
+                    {
+                        "from": 493,
+                        "to": 491,
+                        "label": "1"
+                    },
+                    {
+                        "from": 491,
+                        "to": 484,
+                        "label": "0"
+                    },
+                    {
+                        "from": 491,
+                        "to": 485,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 501,
+                        "to": 494,
+                        "label": "0"
+                    },
+                    {
+                        "from": 494,
+                        "to": 488,
+                        "label": "0"
+                    },
+                    {
+                        "from": 488,
+                        "to": 482,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 480,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 481,
+                        "label": "1"
+                    },
+                    {
+                        "from": 488,
+                        "to": 483,
+                        "label": "1"
+                    },
+                    {
+                        "from": 494,
+                        "to": 489,
+                        "label": "1"
+                    },
+                    {
+                        "from": 501,
+                        "to": 495,
+                        "label": "1"
+                    },
+                    {
+                        "from": 495,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 495,
+                        "to": 497,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 500,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 135,
+            "symbol": 98,
+            "char": "b",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 135,
+                        "symbol": null,
+                        "label": "* (135)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 96,
+                        "symbol": null,
+                        "label": "* (96)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 64,
+                        "symbol": null,
+                        "label": "* (64)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 18,
+                        "symbol": 115,
+                        "label": "115 (18)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 46,
+                        "symbol": 97,
+                        "label": "97 (46)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 32,
+                        "symbol": null,
+                        "label": "* (32)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 12,
+                        "symbol": null,
+                        "label": "* (12)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 491,
+                        "weight": 4,
+                        "symbol": 105,
+                        "label": "105 (4)"
+                    },
+                    {
+                        "id": 490,
+                        "weight": 3,
+                        "symbol": 110,
+                        "label": "110 (3)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 5,
+                        "symbol": null,
+                        "label": "* (5)"
+                    },
+                    {
+                        "id": 488,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 482,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 480,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 481,
+                        "weight": 1,
+                        "symbol": 101,
+                        "label": "101 (1)"
+                    },
+                    {
+                        "id": 483,
+                        "weight": 1,
+                        "symbol": 111,
+                        "label": "111 (1)"
+                    },
+                    {
+                        "id": 489,
+                        "weight": 3,
+                        "symbol": 103,
+                        "label": "103 (3)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 20,
+                        "symbol": null,
+                        "label": "* (20)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 8,
+                        "symbol": null,
+                        "label": "* (8)"
+                    },
+                    {
+                        "id": 492,
+                        "weight": 4,
+                        "symbol": 121,
+                        "label": "121 (4)"
+                    },
+                    {
+                        "id": 493,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 486,
+                        "weight": 2,
+                        "symbol": 114,
+                        "label": "114 (2)"
+                    },
+                    {
+                        "id": 487,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 484,
+                        "weight": 1,
+                        "symbol": 119,
+                        "label": "119 (1)"
+                    },
+                    {
+                        "id": 485,
+                        "weight": 1,
+                        "symbol": 106,
+                        "label": "106 (1)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 12,
+                        "symbol": null,
+                        "label": "* (12)"
+                    },
+                    {
+                        "id": 494,
+                        "weight": 5,
+                        "symbol": 32,
+                        "label": "32 (5)"
+                    },
+                    {
+                        "id": 495,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 39,
+                        "symbol": null,
+                        "label": "* (39)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 15,
+                        "symbol": 100,
+                        "label": "100 (15)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 24,
+                        "symbol": null,
+                        "label": "* (24)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 14,
+                        "symbol": 104,
+                        "label": "104 (14)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 10,
+                        "symbol": 98,
+                        "label": "98 (10)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 496,
+                        "to": 491,
+                        "label": "0"
+                    },
+                    {
+                        "from": 496,
+                        "to": 490,
+                        "label": "1"
+                    },
+                    {
+                        "from": 502,
+                        "to": 497,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 488,
+                        "label": "0"
+                    },
+                    {
+                        "from": 488,
+                        "to": 482,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 480,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 481,
+                        "label": "1"
+                    },
+                    {
+                        "from": 488,
+                        "to": 483,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 489,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 492,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 493,
+                        "label": "1"
+                    },
+                    {
+                        "from": 493,
+                        "to": 486,
+                        "label": "0"
+                    },
+                    {
+                        "from": 493,
+                        "to": 487,
+                        "label": "1"
+                    },
+                    {
+                        "from": 487,
+                        "to": 484,
+                        "label": "0"
+                    },
+                    {
+                        "from": 487,
+                        "to": 485,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 499,
+                        "to": 494,
+                        "label": "0"
+                    },
+                    {
+                        "from": 499,
+                        "to": 495,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 505,
+                        "to": 500,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 150,
+            "symbol": 105,
+            "char": "i",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 150,
+                        "symbol": null,
+                        "label": "* (150)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 105,
+                        "symbol": null,
+                        "label": "* (105)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 69,
+                        "symbol": null,
+                        "label": "* (69)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 20,
+                        "symbol": 115,
+                        "label": "115 (20)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 49,
+                        "symbol": 97,
+                        "label": "97 (49)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 36,
+                        "symbol": null,
+                        "label": "* (36)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 14,
+                        "symbol": null,
+                        "label": "* (14)"
+                    },
+                    {
+                        "id": 494,
+                        "weight": 6,
+                        "symbol": null,
+                        "label": "* (6)"
+                    },
+                    {
+                        "id": 488,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 482,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 480,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 481,
+                        "weight": 1,
+                        "symbol": 101,
+                        "label": "101 (1)"
+                    },
+                    {
+                        "id": 483,
+                        "weight": 1,
+                        "symbol": 111,
+                        "label": "111 (1)"
+                    },
+                    {
+                        "id": 489,
+                        "weight": 4,
+                        "symbol": 110,
+                        "label": "110 (4)"
+                    },
+                    {
+                        "id": 495,
+                        "weight": 8,
+                        "symbol": null,
+                        "label": "* (8)"
+                    },
+                    {
+                        "id": 491,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 486,
+                        "weight": 2,
+                        "symbol": 114,
+                        "label": "114 (2)"
+                    },
+                    {
+                        "id": 487,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 484,
+                        "weight": 1,
+                        "symbol": 119,
+                        "label": "119 (1)"
+                    },
+                    {
+                        "id": 485,
+                        "weight": 1,
+                        "symbol": 106,
+                        "label": "106 (1)"
+                    },
+                    {
+                        "id": 490,
+                        "weight": 4,
+                        "symbol": 103,
+                        "label": "103 (4)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 22,
+                        "symbol": null,
+                        "label": "* (22)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 10,
+                        "symbol": null,
+                        "label": "* (10)"
+                    },
+                    {
+                        "id": 493,
+                        "weight": 5,
+                        "symbol": 32,
+                        "label": "32 (5)"
+                    },
+                    {
+                        "id": 492,
+                        "weight": 5,
+                        "symbol": 105,
+                        "label": "105 (5)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 12,
+                        "symbol": 98,
+                        "label": "98 (12)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 45,
+                        "symbol": null,
+                        "label": "* (45)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 17,
+                        "symbol": 104,
+                        "label": "104 (17)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 28,
+                        "symbol": null,
+                        "label": "* (28)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 15,
+                        "symbol": 100,
+                        "label": "100 (15)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 13,
+                        "symbol": null,
+                        "label": "* (13)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 6,
+                        "symbol": 121,
+                        "label": "121 (6)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 494,
+                        "label": "0"
+                    },
+                    {
+                        "from": 494,
+                        "to": 488,
+                        "label": "0"
+                    },
+                    {
+                        "from": 488,
+                        "to": 482,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 480,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 481,
+                        "label": "1"
+                    },
+                    {
+                        "from": 488,
+                        "to": 483,
+                        "label": "1"
+                    },
+                    {
+                        "from": 494,
+                        "to": 489,
+                        "label": "1"
+                    },
+                    {
+                        "from": 502,
+                        "to": 495,
+                        "label": "1"
+                    },
+                    {
+                        "from": 495,
+                        "to": 491,
+                        "label": "0"
+                    },
+                    {
+                        "from": 491,
+                        "to": 486,
+                        "label": "0"
+                    },
+                    {
+                        "from": 491,
+                        "to": 487,
+                        "label": "1"
+                    },
+                    {
+                        "from": 487,
+                        "to": 484,
+                        "label": "0"
+                    },
+                    {
+                        "from": 487,
+                        "to": 485,
+                        "label": "1"
+                    },
+                    {
+                        "from": 495,
+                        "to": 490,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 493,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 492,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 505,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 500,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 500,
+                        "to": 497,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": 153,
+            "symbol": 104,
+            "char": "h",
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 153,
+                        "symbol": null,
+                        "label": "* (153)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 107,
+                        "symbol": null,
+                        "label": "* (107)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 69,
+                        "symbol": null,
+                        "label": "* (69)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 20,
+                        "symbol": 115,
+                        "label": "115 (20)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 49,
+                        "symbol": 97,
+                        "label": "97 (49)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 38,
+                        "symbol": null,
+                        "label": "* (38)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 494,
+                        "weight": 6,
+                        "symbol": 121,
+                        "label": "121 (6)"
+                    },
+                    {
+                        "id": 495,
+                        "weight": 9,
+                        "symbol": null,
+                        "label": "* (9)"
+                    },
+                    {
+                        "id": 491,
+                        "weight": 5,
+                        "symbol": 110,
+                        "label": "110 (5)"
+                    },
+                    {
+                        "id": 490,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 486,
+                        "weight": 2,
+                        "symbol": 114,
+                        "label": "114 (2)"
+                    },
+                    {
+                        "id": 487,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 484,
+                        "weight": 1,
+                        "symbol": 119,
+                        "label": "119 (1)"
+                    },
+                    {
+                        "id": 485,
+                        "weight": 1,
+                        "symbol": 106,
+                        "label": "106 (1)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 23,
+                        "symbol": null,
+                        "label": "* (23)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 11,
+                        "symbol": null,
+                        "label": "* (11)"
+                    },
+                    {
+                        "id": 493,
+                        "weight": 6,
+                        "symbol": 105,
+                        "label": "105 (6)"
+                    },
+                    {
+                        "id": 492,
+                        "weight": 5,
+                        "symbol": 32,
+                        "label": "32 (5)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 12,
+                        "symbol": 98,
+                        "label": "98 (12)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 46,
+                        "symbol": null,
+                        "label": "* (46)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 17,
+                        "symbol": 104,
+                        "label": "104 (17)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 29,
+                        "symbol": null,
+                        "label": "* (29)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 15,
+                        "symbol": 100,
+                        "label": "100 (15)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 14,
+                        "symbol": null,
+                        "label": "* (14)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 488,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 482,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 480,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 481,
+                        "weight": 1,
+                        "symbol": 101,
+                        "label": "101 (1)"
+                    },
+                    {
+                        "id": 483,
+                        "weight": 1,
+                        "symbol": 111,
+                        "label": "111 (1)"
+                    },
+                    {
+                        "id": 489,
+                        "weight": 5,
+                        "symbol": 103,
+                        "label": "103 (5)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 494,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 495,
+                        "label": "1"
+                    },
+                    {
+                        "from": 495,
+                        "to": 491,
+                        "label": "0"
+                    },
+                    {
+                        "from": 495,
+                        "to": 490,
+                        "label": "1"
+                    },
+                    {
+                        "from": 490,
+                        "to": 486,
+                        "label": "0"
+                    },
+                    {
+                        "from": 490,
+                        "to": 487,
+                        "label": "1"
+                    },
+                    {
+                        "from": 487,
+                        "to": 484,
+                        "label": "0"
+                    },
+                    {
+                        "from": 487,
+                        "to": 485,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 493,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 492,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 505,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 500,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 500,
+                        "to": 497,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 488,
+                        "label": "0"
+                    },
+                    {
+                        "from": 488,
+                        "to": 482,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 480,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 481,
+                        "label": "1"
+                    },
+                    {
+                        "from": 488,
+                        "to": 483,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 489,
+                        "label": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "index": -1,
+            "symbol": null,
+            "char": null,
+            "tree": {
+                "nodes": [
+                    {
+                        "id": 512,
+                        "weight": 154,
+                        "symbol": null,
+                        "label": "* (154)"
+                    },
+                    {
+                        "id": 510,
+                        "weight": 107,
+                        "symbol": null,
+                        "label": "* (107)"
+                    },
+                    {
+                        "id": 508,
+                        "weight": 69,
+                        "symbol": null,
+                        "label": "* (69)"
+                    },
+                    {
+                        "id": 506,
+                        "weight": 20,
+                        "symbol": 115,
+                        "label": "115 (20)"
+                    },
+                    {
+                        "id": 507,
+                        "weight": 49,
+                        "symbol": 97,
+                        "label": "97 (49)"
+                    },
+                    {
+                        "id": 509,
+                        "weight": 38,
+                        "symbol": null,
+                        "label": "* (38)"
+                    },
+                    {
+                        "id": 502,
+                        "weight": 15,
+                        "symbol": null,
+                        "label": "* (15)"
+                    },
+                    {
+                        "id": 494,
+                        "weight": 6,
+                        "symbol": 121,
+                        "label": "121 (6)"
+                    },
+                    {
+                        "id": 495,
+                        "weight": 9,
+                        "symbol": null,
+                        "label": "* (9)"
+                    },
+                    {
+                        "id": 491,
+                        "weight": 5,
+                        "symbol": 110,
+                        "label": "110 (5)"
+                    },
+                    {
+                        "id": 490,
+                        "weight": 4,
+                        "symbol": null,
+                        "label": "* (4)"
+                    },
+                    {
+                        "id": 486,
+                        "weight": 2,
+                        "symbol": 114,
+                        "label": "114 (2)"
+                    },
+                    {
+                        "id": 487,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 484,
+                        "weight": 1,
+                        "symbol": 119,
+                        "label": "119 (1)"
+                    },
+                    {
+                        "id": 485,
+                        "weight": 1,
+                        "symbol": 106,
+                        "label": "106 (1)"
+                    },
+                    {
+                        "id": 503,
+                        "weight": 23,
+                        "symbol": null,
+                        "label": "* (23)"
+                    },
+                    {
+                        "id": 498,
+                        "weight": 11,
+                        "symbol": null,
+                        "label": "* (11)"
+                    },
+                    {
+                        "id": 493,
+                        "weight": 6,
+                        "symbol": 105,
+                        "label": "105 (6)"
+                    },
+                    {
+                        "id": 492,
+                        "weight": 5,
+                        "symbol": 32,
+                        "label": "32 (5)"
+                    },
+                    {
+                        "id": 499,
+                        "weight": 12,
+                        "symbol": 98,
+                        "label": "98 (12)"
+                    },
+                    {
+                        "id": 511,
+                        "weight": 47,
+                        "symbol": null,
+                        "label": "* (47)"
+                    },
+                    {
+                        "id": 504,
+                        "weight": 18,
+                        "symbol": 104,
+                        "label": "104 (18)"
+                    },
+                    {
+                        "id": 505,
+                        "weight": 29,
+                        "symbol": null,
+                        "label": "* (29)"
+                    },
+                    {
+                        "id": 501,
+                        "weight": 15,
+                        "symbol": 100,
+                        "label": "100 (15)"
+                    },
+                    {
+                        "id": 500,
+                        "weight": 14,
+                        "symbol": null,
+                        "label": "* (14)"
+                    },
+                    {
+                        "id": 496,
+                        "weight": 7,
+                        "symbol": 117,
+                        "label": "117 (7)"
+                    },
+                    {
+                        "id": 497,
+                        "weight": 7,
+                        "symbol": null,
+                        "label": "* (7)"
+                    },
+                    {
+                        "id": 488,
+                        "weight": 2,
+                        "symbol": null,
+                        "label": "* (2)"
+                    },
+                    {
+                        "id": 482,
+                        "weight": 1,
+                        "symbol": null,
+                        "label": "* (1)"
+                    },
+                    {
+                        "id": 480,
+                        "weight": 0,
+                        "symbol": "NYT",
+                        "label": "NYT (0)"
+                    },
+                    {
+                        "id": 481,
+                        "weight": 1,
+                        "symbol": 101,
+                        "label": "101 (1)"
+                    },
+                    {
+                        "id": 483,
+                        "weight": 1,
+                        "symbol": 111,
+                        "label": "111 (1)"
+                    },
+                    {
+                        "id": 489,
+                        "weight": 5,
+                        "symbol": 103,
+                        "label": "103 (5)"
+                    }
+                ],
+                "edges": [
+                    {
+                        "from": 512,
+                        "to": 510,
+                        "label": "0"
+                    },
+                    {
+                        "from": 510,
+                        "to": 508,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 506,
+                        "label": "0"
+                    },
+                    {
+                        "from": 508,
+                        "to": 507,
+                        "label": "1"
+                    },
+                    {
+                        "from": 510,
+                        "to": 509,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 502,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 494,
+                        "label": "0"
+                    },
+                    {
+                        "from": 502,
+                        "to": 495,
+                        "label": "1"
+                    },
+                    {
+                        "from": 495,
+                        "to": 491,
+                        "label": "0"
+                    },
+                    {
+                        "from": 495,
+                        "to": 490,
+                        "label": "1"
+                    },
+                    {
+                        "from": 490,
+                        "to": 486,
+                        "label": "0"
+                    },
+                    {
+                        "from": 490,
+                        "to": 487,
+                        "label": "1"
+                    },
+                    {
+                        "from": 487,
+                        "to": 484,
+                        "label": "0"
+                    },
+                    {
+                        "from": 487,
+                        "to": 485,
+                        "label": "1"
+                    },
+                    {
+                        "from": 509,
+                        "to": 503,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 498,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 493,
+                        "label": "0"
+                    },
+                    {
+                        "from": 498,
+                        "to": 492,
+                        "label": "1"
+                    },
+                    {
+                        "from": 503,
+                        "to": 499,
+                        "label": "1"
+                    },
+                    {
+                        "from": 512,
+                        "to": 511,
+                        "label": "1"
+                    },
+                    {
+                        "from": 511,
+                        "to": 504,
+                        "label": "0"
+                    },
+                    {
+                        "from": 511,
+                        "to": 505,
+                        "label": "1"
+                    },
+                    {
+                        "from": 505,
+                        "to": 501,
+                        "label": "0"
+                    },
+                    {
+                        "from": 505,
+                        "to": 500,
+                        "label": "1"
+                    },
+                    {
+                        "from": 500,
+                        "to": 496,
+                        "label": "0"
+                    },
+                    {
+                        "from": 500,
+                        "to": 497,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 488,
+                        "label": "0"
+                    },
+                    {
+                        "from": 488,
+                        "to": 482,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 480,
+                        "label": "0"
+                    },
+                    {
+                        "from": 482,
+                        "to": 481,
+                        "label": "1"
+                    },
+                    {
+                        "from": 488,
+                        "to": 483,
+                        "label": "1"
+                    },
+                    {
+                        "from": 497,
+                        "to": 489,
+                        "label": "1"
+                    }
+                ]
+            }
+        }
+    ]
+}

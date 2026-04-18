@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Header } from "../components/Header";
-import { Sidebar } from "../components/Sidebar";
+
 import { OCRStage } from "../components/stages/OCRStage";
 import { CompressionStage } from "../components/stages/CompressionStage";
 import { VerificationStage } from "../components/stages/VerificationStage";
@@ -42,7 +42,7 @@ export default function Home() {
       <Header status={status} onAction={status === 'complete' ? resetPipeline : runPipeline} />
       
       <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 py-4 flex space-x-6 min-h-0">
-        <Sidebar status={status} />
+
         
         {/* Main Stage Grid Container */}
         <div className="flex-1 flex flex-col space-y-4 min-h-0">
