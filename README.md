@@ -264,7 +264,7 @@ cp ocr_service_final/printed_cnn.pth backend/pth/
 | Metric | Value |
 |---|---|
 | Typical compression ratio | **1.8 - 2.2x** |
-| Typical encoding efficiency | **~94 %** |
+| Typical encoding efficiency | **~78 %** |
 | E2E pipeline latency (local, MPS) | **< 400 ms** |
 | E2E pipeline latency (Render CPU) | **5 - 10 s** |
 
