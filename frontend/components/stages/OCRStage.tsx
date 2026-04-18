@@ -1,7 +1,10 @@
-import { Upload, CheckCircle2, RotateCcw, Loader2 } from "lucide-react";
+import { Upload, CheckCircle2, RotateCcw, Loader2, FileImage } from "lucide-react";
 import { PipelineStatus } from "../../lib/types";
+import { useState } from "react";
 
 export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset: () => void }) {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  
   const isCompact = status === 'compress' || status === 'verify' || status === 'complete';
   const isActive = status === 'ocr';
 
@@ -18,11 +21,33 @@ export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset:
         
         {status === 'idle' && (
           <>
-            <div className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex flex-col items-center justify-center py-10 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group">
-              <Upload className="w-7 h-7 text-gray-400 group-hover:text-brand-blue mb-3 transition-colors" />
-              <p className="text-sm font-semibold text-gray-700">Drop scanned image or browse</p>
-              <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">PNG · JPG · TIFF · MAX 10 MB</p>
-            </div>
+            <label htmlFor="ocr-file-upload" className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex flex-col items-center justify-center py-10 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group relative">
+              <input 
+                type="file" 
+                id="ocr-file-upload" 
+                className="hidden" 
+                accept="image/png, image/jpeg, image/tiff" 
+                onChange={(e) => {
+                  if (e.target.files && e.target.files.length > 0) {
+                    setSelectedFile(e.target.files[0]);
+                  }
+                }}
+              />
+              
+              {selectedFile ? (
+                <>
+                  <FileImage className="w-7 h-7 text-brand-blue mb-3" />
+                  <p className="text-sm font-semibold text-brand-blue break-all text-center">{selectedFile.name}</p>
+                  <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">Click to change image</p>
+                </>
+              ) : (
+                <>
+                  <Upload className="w-7 h-7 text-gray-400 group-hover:text-brand-blue mb-3 transition-colors" />
+                  <p className="text-sm font-semibold text-gray-700">Drop scanned image or browse</p>
+                  <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">PNG &middot; JPG &middot; TIFF &middot; MAX 10 MB</p>
+                </>
+              )}
+            </label>
             <div className="grid grid-cols-3 gap-2 mb-8">
               <button className="bg-brand-blue text-white text-xs font-semibold py-2.5 rounded-lg shadow-sm">Gaussian</button>
               <button className="bg-brand-purple/20 text-brand-purple text-xs font-semibold py-2.5 rounded-lg hover:bg-brand-purple/30 transition-colors">Salt & pepper</button>
