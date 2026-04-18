@@ -19,7 +19,7 @@ export function OCRStage({ status, onReset, selectedFile, onFileSelect, ocrText 
         
         {status === 'idle' && (
           <>
-            <label htmlFor="ocr-file-upload" className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex-1 min-h-[200px] flex flex-col items-center justify-center py-12 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group relative">
+            <label htmlFor="ocr-file-upload" className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex-1 flex flex-col items-center justify-center py-16 px-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group relative">
               <input 
                 type="file" 
                 id="ocr-file-upload" 
@@ -34,23 +34,18 @@ export function OCRStage({ status, onReset, selectedFile, onFileSelect, ocrText 
               
               {selectedFile ? (
                 <>
-                  <FileImage className="w-7 h-7 text-brand-blue mb-3" />
+                  <FileImage className="w-9 h-9 text-brand-blue mb-4" />
                   <p className="text-sm font-semibold text-brand-blue break-all text-center">{selectedFile.name}</p>
-                  <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">Click to change image</p>
+                  <p className="text-[10px] text-gray-400 mt-2 uppercase font-bold tracking-widest">Click to change image</p>
                 </>
               ) : (
                 <>
-                  <Upload className="w-7 h-7 text-gray-400 group-hover:text-brand-blue mb-3 transition-colors" />
+                  <Upload className="w-9 h-9 text-gray-400 group-hover:text-brand-blue mb-4 transition-colors" />
                   <p className="text-sm font-semibold text-gray-700">Drop scanned image or browse</p>
-                  <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">PNG &middot; JPG &middot; TIFF &middot; MAX 10 MB</p>
+                  <p className="text-[10px] text-gray-400 mt-2 uppercase font-bold tracking-widest">PNG &middot; JPG &middot; TIFF &middot; MAX 10 MB</p>
                 </>
               )}
             </label>
-            <div className="grid grid-cols-3 gap-2 mb-8">
-              <button className="bg-brand-blue text-white text-xs font-semibold py-2.5 rounded-lg shadow-sm">Gaussian</button>
-              <button className="bg-brand-purple/20 text-brand-purple text-xs font-semibold py-2.5 rounded-lg hover:bg-brand-purple/30 transition-colors">Salt & pepper</button>
-              <button className="bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-semibold py-2.5 rounded-lg transition-colors">None</button>
-            </div>
           </>
         )}
 
