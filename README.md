@@ -1,18 +1,18 @@
-# Strike3 — 2-Stage Neural Compression Pipeline
+# Strike3 - 2-Stage Neural Compression Pipeline
 
-A full-stack, end-to-end pipeline that ingests a noisy scanned document image, extracts its text with a custom-trained CRNN, and compresses the output with a from-scratch Adaptive Huffman encoder — all exposed as two communicating FastAPI microservices and visualised in a Next.js dashboard.
+A full-stack, end-to-end pipeline that ingests a noisy scanned document image, extracts its text with a custom-trained PrintedCNN model, and compresses the output with a from-scratch Adaptive Huffman encoder - all exposed as two communicating FastAPI microservices and visualized in a Next.js dashboard.
 
 ---
 
 ## Table of Contents
 
 1. [Architecture Overview](#architecture-overview)
-2. [Stage 1 — OCR Microservice (CRNN)](#stage-1--ocr-microservice-crnn)
-3. [Stage 2 — Compression Microservice (Adaptive Huffman)](#stage-2--compression-microservice-adaptive-huffman)
+2. [Stage 1 - OCR Microservice (PrintedCNN)](#stage-1---ocr-microservice-printedcnn)
+3. [Stage 2 - Compression Microservice (Adaptive Huffman)](#stage-2---compression-microservice-adaptive-huffman)
 4. [API Reference](#api-reference)
 5. [Frontend](#frontend)
 6. [Setup & Running Locally](#setup--running-locally)
-7. [Training the CRNN](#training-the-crnn)
+7. [Training Stage 1 OCR](#training-stage-1-ocr)
 8. [Deployment](#deployment)
 9. [Benchmarks & Metrics](#benchmarks--metrics)
 
@@ -20,111 +20,61 @@ A full-stack, end-to-end pipeline that ingests a noisy scanned document image, e
 
 ## Architecture Overview
 
-```
-┌─────────────────────┐     POST /process-image     ┌──────────────────────────────┐
-│   Next.js Frontend  │ ─────────────────────────── │     FastAPI Backend           │
-│   (Vercel)          │ ◄─────────────────────────── │     (Render)                 │
-└─────────────────────┘       JSON response          │                              │
-                                                     │  ┌─────────────────────┐     │
-                                                     │  │  Stage 1: CRNN OCR  │     │
-                                                     │  │  POST /ocr          │     │
-                                                     │  └────────┬────────────┘     │
-                                                     │           │ extracted text   │
-                                                     │  ┌────────▼────────────┐     │
-                                                     │  │  Stage 2: Adaptive  │     │
-                                                     │  │  Huffman Encoder    │     │
-                                                     │  │  POST /compress     │     │
-                                                     │  └─────────────────────┘     │
-                                                     └──────────────────────────────┘
-```
+![Pipeline Overview](pipeline_overview.jpeg)
 
-The `/process-image` endpoint orchestrates both stages in a single call: it runs OCR on the uploaded image, pipes the extracted text into the Adaptive Huffman encoder, decompresses, and verifies lossless recovery — returning all metrics in one JSON response.
+The `/process-image` endpoint orchestrates both stages in a single call: it runs OCR on the uploaded image, pipes the extracted text into the Adaptive Huffman encoder, decompresses, and verifies lossless recovery - returning all metrics in one JSON response.
 
 ---
 
-## Stage 1 — OCR Microservice (CRNN)
+## Stage 1 - OCR Microservice (PrintedCNN)
 
-### Model Architecture
+Stage 1 is a FastAPI OCR service that processes noisy document images through a full vision pipeline:
 
-The OCR model is a **CRNN (Convolutional Recurrent Neural Network)** trained end-to-end with **CTC (Connectionist Temporal Classification) loss** — the standard approach for sequence recognition without explicit character segmentation.
+1. Preprocess image (automatic polarity + Otsu binarization)
+2. Segment lines and character blobs (projection + connected components)
+3. Split suspiciously wide blobs using vertical valley detection
+4. Normalize crops to 28x28 and batch classify with a CNN
+5. Apply post-processing (char-level rules + domain-vocab fuzzy correction)
 
-```
-Input image  →  CNN Feature Extractor  →  BiLSTM  →  Linear  →  CTC Decode  →  Text
-(1 × 64 × W)                              (seq)
-```
+### Stage 1 Architecture Diagram
 
-#### CNN Backbone — 6 convolutional blocks
+![Stage 1 OCR Flow](stage1_flow_image.jpeg)
 
-| Block | Channels | Operation | Spatial change |
-|-------|----------|-----------|----------------|
-| 1 | 1 → 64 | Conv3×3 + BN + ReLU + MaxPool 2×2 | H/2, W/2 |
-| 2 | 64 → 128 | Conv3×3 + BN + ReLU + MaxPool 2×2 | H/4, W/4 |
-| 3 | 128 → 256 | Conv3×3 + BN + ReLU | — |
-| 4 | 256 → 256 | Conv3×3 + BN + ReLU + MaxPool 2×2 | H/8, W/4 |
-| 5 | 256 → 512 | Conv3×3 + BN + ReLU + MaxPool 2×1 | H/16, W/4 |
-| 6 | 512 → 512 | Conv3×3 + BN + ReLU + MaxPool 4×1 | H/64 → 1, W/4 |
+### Model
 
-Height is fully collapsed to 1 after block 6, so the output feature map is `(B, 512, 1, W/4)`. Width is the time axis fed to the RNN.
+Deployed model: **PrintedCNN** (single checkpoint: `printed_cnn.pth`), 47 classes:
+- Digits `0-9`
+- Uppercase `A-Z`
+- Lowercase subset: `a, b, d, e, f, g, h, n, q, r, t`
 
-**Design rationale:**
-- `3×3` kernels throughout — best trade-off between receptive field and parameter count.
-- `BatchNorm` after every conv — stabilises training and acts as implicit regularisation.
-- Asymmetric pooling in blocks 5 & 6 `(H×1)` — collapses height while preserving the horizontal time resolution needed for sequence decoding.
+Architecture summary:
+- 4 convolution blocks with BatchNorm + ReLU
+- MaxPooling in first 3 blocks (`28->14->7->3`)
+- Fully-connected head: `256x3x3 -> 512 -> 47` with dropout 0.2
 
-#### RNN Head
+### Training Data Strategy
 
-- 2-layer **BiLSTM**, hidden size 256 per direction (512 total per timestep)
-- `dropout=0.2` between layers
-- Final `Linear(512 → num_classes)` projects each timestep to character logits
-- **CTC greedy decode** at inference (argmax + collapse repeats + remove blank token 0)
+The Stage 1 model was trained using a mixed dataset strategy to improve robustness on noisy scans:
+- **EMNIST + MNIST** for core character priors
+- **Fonts-based synthetic data** (printed character crops and lines) for document-style text
+- **Pipeline-aligned synthetic crops** generated through the same preprocessing/segmentation flow used at inference
 
-#### Training Data (4 sources)
+Noise augmentation included both **Gaussian** and **salt-and-pepper** perturbations to match evaluation conditions.
 
-| Source | Samples | Purpose |
-|--------|---------|---------|
-| **EMNIST ByMerge** | 6 000 synthesised line images | Handwritten letter/digit diversity |
-| **MNIST** | 3 000 synthesised line images | Handwritten digit robustness |
-| **Synthetic printed lines** | ~378 labelled images (clean + noisy) | Printed-font generalisation |
-| **Tesseract pseudo-labels** | Augmented from synthetic corpus | Cheap label expansion on hard samples |
+### Why this worked better
 
-EMNIST and MNIST characters were randomly concatenated into variable-length "line" images (1–16 characters wide) to generate sequence-level training samples, giving the LSTM meaningful temporal context at training time.
-
-#### Training Configuration
-
-| Hyperparameter | Value |
-|---|---|
-| Epochs | 35 |
-| Batch size | 12 |
-| Optimiser | Adam, lr = 1e-3 |
-| LR schedule | ReduceLROnPlateau (patience = 3) |
-| Gradient clipping | 5.0 |
-| CTC blank token | 0 |
-| Max image width | 512 px (padded) |
-| Image height | 64 px |
-| Device | MPS (Apple Silicon) / CUDA / CPU |
-
-#### Noise Profiles Supported
-
-- **Gaussian noise** — additive pixel-level Gaussian noise (σ tunable), simulating scanner sensor noise
-- **Salt-and-pepper noise** — random black/white pixel corruption, simulating dust and sensor dropout
-
-Both noise types were applied during synthetic data generation so the model is evaluated against each independently.
-
-#### Preprocessing (at inference)
-
-1. Convert image to grayscale
-2. Gaussian blur (3×3) + adaptive threshold for line segmentation
-3. Each detected line is cropped, resized to height 64, padded to width 512
-4. Normalised to `[-1, 1]` via `(pixel/255 − 0.5) / 0.5`
-5. CTC greedy decode on per-line logits; lines joined with `\n`
+- Segmentation quality improved end-to-end OCR more than only increasing model depth
+- Width-aware blob splitting reduced merged-character errors
+- Post-processing recovered common OCR confusions without over-correcting
+- A single lightweight checkpoint (`printed_cnn.pth`) made deployment simpler and faster
 
 ---
 
-## Stage 2 — Compression Microservice (Adaptive Huffman)
+## Stage 2 - Compression Microservice (Adaptive Huffman)
 
 ### Algorithm
 
-A **from-scratch FGK (Faller-Gallager-Knuth) Adaptive Huffman** encoder/decoder — no external compression libraries (`zlib`, `gzip`, etc.) are used anywhere.
+A **from-scratch FGK (Faller-Gallager-Knuth) Adaptive Huffman** encoder/decoder - no external compression libraries (`zlib`, `gzip`, etc.) are used anywhere.
 
 The encoder maintains a live Sibling Property tree. As each character is encoded:
 1. If the symbol is new, emit the NYT (Not Yet Transmitted) codeword + raw Unicode bits
@@ -139,7 +89,7 @@ The decoder mirrors this process, reconstructing the identical tree state symbol
 |---|---|
 | **Compression ratio** | `original_bytes / compressed_bytes` |
 | **Entropy** | $H = -\sum p_i \log_2 p_i$ bits/symbol |
-| **Encoding efficiency** | `(entropy × original_bytes) / (compressed_bits) × 100 %` |
+| **Encoding efficiency** | `(entropy x original_bytes) / (compressed_bits) x 100 %` |
 
 ---
 
@@ -172,23 +122,30 @@ Compress a text string with Adaptive Huffman.
   "compression_ratio": 1.85,
   "entropy": 4.21,
   "encoding_efficiency": 94.3,
-  "latency_ms": 12
+  "original_size": 1200,
+  "compressed_size": 650,
+  "latency": 12,
+  "huffman_tree": {
+    "root": "*",
+    "structure": {"nodes": [], "edges": []}
+  },
+  "steps": []
 }
 ```
 
 ### `POST /decompress`
 Decompress a previously compressed bitstring.
 
-**Request:** `{"compressed_data": "<bitstring>", "original_length": 123}`
+**Request:** `{"compressed_data": "<bitstring>"}`
 
 **Response:** `{"text": "original text"}`
 
 ### `POST /verify`
-Round-trip check: compress → decompress → diff.
+Round-trip check: compress -> decompress -> diff.
 
-**Request:** `{"text": "..."}`
+**Request:** `{"original_text": "...", "decompressed_text": "..."}`
 
-**Response:** `{"match": true, "original": "...", "decompressed": "..."}`
+**Response:** `{"is_lossless": true, "char_match": 120, "char_total": 120, "match_percentage": 100.0}`
 
 ### `POST /process-image`
 **Full pipeline endpoint.** Accepts an image, runs OCR then compression+verification internally.
@@ -203,9 +160,22 @@ Round-trip check: compress → decompress → diff.
     "compressed_data": "...",
     "compression_ratio": 1.85,
     "entropy": 4.21,
-    "encoding_efficiency": 94.3
+    "encoding_efficiency": 94.3,
+    "original_size": 1200,
+    "compressed_size": 650,
+    "latency": 12,
+    "huffman_tree": {
+      "root": "*",
+      "structure": {"nodes": [], "edges": []}
+    },
+    "steps": []
   },
-  "verification": { "match": true },
+  "verification": {
+    "is_lossless": true,
+    "char_match": 120,
+    "char_total": 120,
+    "match_percentage": 100.0
+  },
   "total_latency": 340
 }
 ```
@@ -217,12 +187,12 @@ Round-trip check: compress → decompress → diff.
 Built with **Next.js 16 + React 19 + Tailwind CSS**, deployed on Vercel.
 
 Three animated pipeline stages visualised in real time:
-- **OCR Stage** — file picker, live extracted text display
-- **Compression Stage** — compression ratio, entropy, encoding efficiency cards
-- **Verification Stage** — lossless match confirmation
+- **OCR Stage** - file picker, live extracted text display
+- **Compression Stage** - compression ratio, entropy, encoding efficiency cards
+- **Verification Stage** - lossless match confirmation
 
 Six live metric cards appear after pipeline completion:
-- OCR Accuracy (Gaussian) · OCR Accuracy (Salt & Pepper) · Compression Ratio · Entropy · Encoding Efficiency · E2E Latency
+- OCR Accuracy (Gaussian) - OCR Accuracy (Salt and Pepper) - Compression Ratio - Entropy - Encoding Efficiency - E2E Latency
 
 ---
 
@@ -243,12 +213,12 @@ uvicorn main:app --reload
 # Runs at http://localhost:8000
 ```
 
-Model checkpoints must be present at `backend/pth/crnn_model.pth` and `backend/pth/crnn_idx2char.pth` (see Training section below or download from releases).
+Model checkpoint must be present at `backend/pth/printed_cnn.pth`.
 
-Override checkpoint paths via env vars:
+Override model/vocabulary paths via env vars:
 ```
-OCR_CRNN_MODEL_PATH=/path/to/crnn_model.pth
-OCR_CRNN_IDX2CHAR_PATH=/path/to/crnn_idx2char.pth
+OCR_PRINTED_MODEL_PATH=/path/to/printed_cnn.pth
+OCR_VOCAB_CSV_PATH=/path/to/tesseract_metadata.csv
 ```
 
 ### Frontend
@@ -264,31 +234,16 @@ npm run dev
 
 ---
 
-## Training the CRNN
+## Training Stage 1 OCR
 
-```bash
-cd ocr_service
-python train_crnn.py \
-  --data_dir ./data/synthetic_lines \
-  --epochs 35 \
-  --batch_size 12 \
-  --max_width 1024 \
-  --mnist_line_samples 3000 \
-  --emnist_line_samples 6000 \
-  --idx_min_chars 1 \
-  --idx_max_chars 16 \
-  --seed 42
-```
+Primary deployed Stage 1 model is the printed-character CNN from `ocr_service_final`.
 
-Outputs saved to `ocr_service/`:
-- `crnn_model.pth` — model weights (best val loss checkpoint)
-- `crnn_char2idx.pth` — character → index mapping
-- `crnn_idx2char.pth` — index → character mapping
+For training/evaluation scripts used in this pipeline, run from `ocr_service_final` and export:
+- `printed_cnn.pth` - deployed OCR checkpoint
 
 Copy weights to backend before serving:
 ```bash
-cp ocr_service/crnn_model.pth backend/pth/
-cp ocr_service/crnn_idx2char.pth backend/pth/
+cp ocr_service_final/printed_cnn.pth backend/pth/
 ```
 
 ---
@@ -306,11 +261,9 @@ cp ocr_service/crnn_idx2char.pth backend/pth/
 
 | Metric | Value |
 |---|---|
-| OCR accuracy — Gaussian noise | **97.4 %** |
-| OCR accuracy — Salt & pepper | **95.1 %** |
-| Typical compression ratio | **1.8 – 2.2×** |
+| Typical compression ratio | **1.8 - 2.2x** |
 | Typical encoding efficiency | **~94 %** |
 | E2E pipeline latency (local, MPS) | **< 400 ms** |
-| E2E pipeline latency (Render CPU) | **2 – 6 s** |
+| E2E pipeline latency (Render CPU) | **5 - 10 s** |
 
 Latency on Render reflects CPU-only inference on a shared instance; local MPS (Apple Silicon) performance is significantly faster.
