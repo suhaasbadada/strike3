@@ -8,6 +8,8 @@ import cv2
 import numpy as np
 import torch
 import torch.nn as nn
+
+torch.set_num_threads(max(1, torch.get_num_threads()))
 from PIL import Image
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from app.schemas.ocr_schema import OcrResponse, ProcessImageResponse
@@ -63,7 +65,7 @@ class CRNN(nn.Module):
 def _normalize_text(text: str) -> str:
     return " ".join(text.replace("\n", " ").split())
 
-def _prepare_line_tensor(line_image: Image.Image, max_width: int = 1024) -> torch.Tensor:
+def _prepare_line_tensor(line_image: Image.Image, max_width: int = 512) -> torch.Tensor:
     if line_image.mode != "L":
         line_image = line_image.convert("L")
 
@@ -187,7 +189,7 @@ def _recognize_image_bytes(payload: bytes) -> str:
     image = Image.open(io.BytesIO(payload)).convert("L")
 
     lines = _segment_lines(image)
-    page_lines = [_recognize_line(line, model, idx2char, device) for line in lines]
+    page_lines = [_recognize_line(line, model, idx2char, device) for line in lines[:20]]  # cap at 20 lines
     page_text = "\n".join([t for t in page_lines if t])
     if page_text.strip():
         return page_text

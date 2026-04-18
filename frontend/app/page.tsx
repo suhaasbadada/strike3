@@ -22,7 +22,7 @@ export default function Home() {
         const formData = new FormData();
         formData.append("file", selectedFile);
         
-        const res = await fetch("http://localhost:8000/process-image", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "https://your-render-url.onrender.com"}/process-image`, {
           method: "POST",
           body: formData
         });
@@ -31,8 +31,7 @@ export default function Home() {
         
         const data: ProcessImageResponse = await res.json();
         setApiData(data);
-        
-        // Artificial UI stepping to show the animations
+
         setTimeout(() => {
           setStatus('compress');
           

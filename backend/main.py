@@ -1,10 +1,19 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes.compression_routes import router as compression_router
-from app.api.routes.ocr_routes import router as ocr_router
+from app.api.routes.ocr_routes import router as ocr_router, _load_ocr_once
 
-app = FastAPI(title="Strike3 Backend")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        _load_ocr_once()
+    except Exception:
+        pass
+    yield
+
+app = FastAPI(title="Strike3 Backend", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
