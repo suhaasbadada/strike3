@@ -9,7 +9,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 from PIL import Image
-from torchvision import transforms
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from app.schemas.ocr_schema import OcrResponse, ProcessImageResponse
 from app.api.routes.compression_routes import compress_text, decompress_text, verify_text
@@ -76,13 +75,11 @@ def _prepare_line_tensor(line_image: Image.Image, max_width: int = 1024) -> torc
     canvas = Image.new("L", (max_width, 64), color=255)
     canvas.paste(resized, (0, 0))
 
-    to_tensor = transforms.Compose(
-        [
-            transforms.ToTensor(),
-            transforms.Normalize(mean=(0.5,), std=(0.5,)),
-        ]
-    )
-    return to_tensor(canvas).unsqueeze(0)
+    # Convert grayscale [0,255] -> normalized tensor in [-1,1] with shape (1,1,H,W).
+    arr = np.asarray(canvas, dtype=np.float32) / 255.0
+    arr = (arr - 0.5) / 0.5
+    tensor = torch.from_numpy(arr).unsqueeze(0).unsqueeze(0)
+    return tensor
 
 def _ctc_greedy_decode(logits: torch.Tensor, idx2char: Dict[int, str], blank_idx: int = 0) -> str:
     preds = logits.argmax(dim=-1).squeeze(0).tolist()
