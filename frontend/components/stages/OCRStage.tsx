@@ -84,8 +84,7 @@ export function OCRStage({ status, onReset, selectedFile, onFileSelect, ocrText 
               </div>
             </div>
 
-            <div className="flex justify-between items-center text-[10px] border-t border-gray-100 pt-2.5">
-              <div className="font-bold uppercase text-gray-500">Accuracy: <span className="text-brand-blue text-xs ml-1 tracking-tight">97.4%</span></div>
+            <div className="flex justify-end items-center text-[10px] border-t border-gray-100 pt-2.5">
               <div className="bg-brand-blue/10 text-brand-blue px-2 py-0.5 rounded font-bold shadow-sm">Latency: 142ms</div>
             </div>
           </div>
