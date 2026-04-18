@@ -242,3 +242,124 @@ class AdaptiveHuffman:
             "compression_ratio": round(compressed / original, 2) if original else 0,
             "entropy": self._entropy(text)
         }
+
+    # export tree for visualization
+    def export_tree(self) -> dict:
+        nodes = []
+        edges = []
+
+        def dfs(node):
+            if node is None:
+                return
+
+            if node.symbol == "NYT":
+                label = f"NYT ({node.weight})"
+            elif node.symbol is not None:
+                label = f"{node.symbol} ({node.weight})"
+            else:
+                label = f"* ({node.weight})"
+
+            nodes.append(
+                {
+                    "id": int(node.order),
+                    "weight": int(node.weight),
+                    "symbol": node.symbol,
+                    "label": label,
+                }
+            )
+
+            if node.left is not None:
+                edges.append(
+                    {
+                        "from": int(node.order),
+                        "to": int(node.left.order),
+                        "label": "0",
+                    }
+                )
+                dfs(node.left)
+
+            if node.right is not None:
+                edges.append(
+                    {
+                        "from": int(node.order),
+                        "to": int(node.right.order),
+                        "label": "1",
+                    }
+                )
+                dfs(node.right)
+
+        dfs(self.root)
+
+        return {"nodes": nodes, "edges": edges}
+
+    # encode with sampled tree (snapshots)
+    def encode_with_steps(self, text: str) -> dict:
+        data = text.encode("utf-8")
+        n = len(data)
+        max_steps = 200
+
+        def build_capture_indices(step_interval):
+            if n == 0:
+                return []
+
+            capture = []
+            for i in range(n):
+                if i == 0 or i == n - 1 or i % step_interval == 0:
+                    capture.append(i)
+            return capture
+
+        step_interval = max(1, int(n * 0.10)) if n else 1
+        capture_indices = build_capture_indices(step_interval)
+
+        if len(capture_indices) > max_steps and n:
+            step_interval = max(1, math.ceil(n / max_steps))
+            capture_indices = build_capture_indices(step_interval)
+
+            # Guardrail: keep strict cap while preserving first/last in rare edge cases.
+            if len(capture_indices) > max_steps:
+                if max_steps == 1:
+                    capture_indices = [0]
+                else:
+                    stride = (n - 1) / (max_steps - 1)
+                    capture_indices = [
+                        int(round(i * stride)) for i in range(max_steps)
+                    ]
+                    capture_indices[0] = 0
+                    capture_indices[-1] = n - 1
+
+        capture_set = set(capture_indices)
+
+        self.reset()
+        steps = []
+
+        for i, symbol in enumerate(data):
+            if i in capture_set:
+                try:
+                    char = chr(symbol)
+                except (TypeError, ValueError):
+                    char = "\uFFFD"
+
+                steps.append(
+                    {
+                        "index": i,
+                        "symbol": int(symbol),
+                        "char": char,
+                        "tree": self.export_tree(),
+                    }
+                )
+
+            self._process(symbol)
+
+        steps.append(
+            {
+                "index": -1,
+                "symbol": None,
+                "char": None,
+                "tree": self.export_tree(),
+            }
+        )
+
+        return {
+            "original": text,
+            "steps": steps,
+        }

@@ -1,7 +1,12 @@
-from app.services.adaptive_huffman import AdaptiveHuffman
+import json
 import random
 import string
 import math
+
+try:
+    from app.services.adaptive_huffman import AdaptiveHuffman
+except ModuleNotFoundError:
+    from services.adaptive_huffman import AdaptiveHuffman
 
 # basic
 def test_basic():
@@ -10,13 +15,21 @@ def test_basic():
     text = "hello world"
 
     encoded = ah.encode(text)
+    tree = ah.export_tree()
     decoded = ah.decode(encoded)
 
     print("\noriginal:", text)
     print("encoded :", encoded)
     print("decoded :", decoded)
+    print("tree nodes:", len(tree["nodes"]))
+    print("tree edges:", len(tree["edges"]))
+    print("tree:")
+    print(json.dumps(tree, indent=2, ensure_ascii=False))
 
     assert text == decoded
+    assert "nodes" in tree and "edges" in tree
+    assert isinstance(tree["nodes"], list)
+    assert isinstance(tree["edges"], list)
     print("basic test passed")
 
 # edge cases - emojis, empty string, white and tab spaces
