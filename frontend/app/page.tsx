@@ -1,22 +1,44 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { apiGet } from "../lib/api";
+import { Header } from "../components/Header";
+import { Sidebar } from "../components/Sidebar";
 
 export default function Home() {
-  const [data, setData] = useState<any>(null);
-
-  useEffect(() => {
-    apiGet("/").then(setData);
-  }, []);
-
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Strike3</h1>
+    <div className="min-h-screen bg-background flex flex-col selection:bg-brand-blue/20">
+      <Header />
 
-      <h2>Backend Response:</h2>
+      <main className="flex-1 w-full max-w-[1440px] mx-auto px-8 py-8 flex space-x-6">
+        <Sidebar />
 
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+        {/* Main Stage Grid Container */}
+        <div className="flex-1 flex flex-col space-y-6">
+
+          {/* Core Pipeline UI */}
+          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-2xl flex items-center justify-center p-8 text-gray-400 text-sm shadow-sm transition-all hover:bg-white/60">
+              <span className="font-medium tracking-wide">Stage 1 OCR goes here</span>
+            </div>
+
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-2xl flex items-center justify-center p-8 text-gray-400 text-sm shadow-sm transition-all hover:bg-white/60">
+              <span className="font-medium tracking-wide">Stage 2 Compression goes here</span>
+            </div>
+
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-2xl flex items-center justify-center p-8 text-gray-400 text-sm shadow-sm transition-all hover:bg-white/60">
+              <span className="font-medium tracking-wide">Stage 3 Verification goes here</span>
+            </div>
+
+          </div>
+
+          {/* Metric Cards Bottom Bar */}
+          <div className="h-28 grid grid-cols-4 gap-6">
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-gray-400 text-xs shadow-sm hover:bg-white/60" />
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-gray-400 text-xs shadow-sm hover:bg-white/60" />
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-gray-400 text-xs shadow-sm hover:bg-white/60" />
+            <div className="bg-white/40 border border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-gray-400 text-xs shadow-sm hover:bg-white/60" />
+          </div>
+
+        </div>
+      </main>
     </div>
   );
 }
