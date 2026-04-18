@@ -24,6 +24,14 @@ A full-stack, end-to-end pipeline that ingests a noisy scanned document image, e
 
 The `/process-image` endpoint orchestrates both stages in a single call: it runs OCR on the uploaded image, pipes the extracted text into the Adaptive Huffman encoder, decompresses, and verifies lossless recovery - returning all metrics in one JSON response.
 
+### How the Microservices Communicate
+
+The system is organized as two logical microservices inside the FastAPI backend:
+- **Stage 1 /ocr** performs OCR on the uploaded image and returns extracted text.
+- **Stage 2 /compress, /decompress, and /verify** consume text produced by Stage 1 and return compression metrics, tree snapshots, and lossless verification results.
+
+For the end-to-end user flow, the frontend sends a single `multipart/form-data` request to `/process-image`. That endpoint first runs OCR, then passes the resulting text into the Adaptive Huffman service in-process using structured request/response payloads (`CompressRequest`, `DecompressRequest`, `VerifyRequest`), and finally returns one combined JSON response to the frontend.
+
 ---
 
 ## Stage 1 - OCR Microservice (PrintedCNN)
@@ -54,6 +62,15 @@ Architecture summary:
 - MaxPooling in first 3 blocks (`28->14->7->3`)
 - Fully-connected head: `256x3x3 -> 512 -> 47` with dropout 0.2
 
+### CNN Architecture Justification
+
+- **4 convolution blocks** were enough to capture stroke edges, loops, and printed character structure without making the model too heavy for CPU deployment.
+- **3x3 kernels** preserve local spatial detail, which matters for visually similar classes such as `0/O`, `1/I`, and `5/S`.
+- **BatchNorm + ReLU** stabilized training and improved convergence on mixed synthetic/noisy data.
+- **Three max-pooling stages** reduce the 28x28 crop to a compact 3x3 feature map, keeping the classifier lightweight while still preserving enough shape information.
+- **A 512-unit fully connected layer with dropout 0.2** gave a good balance between capacity and overfitting control for 47 output classes.
+- The final design was chosen for **fast inference on small normalized crops**, which matters more here than a deeper network because segmentation quality dominates end-to-end OCR accuracy.
+
 ### Training Data Strategy
 
 The Stage 1 model was trained using a mixed dataset strategy to improve robustness on noisy scans:
@@ -62,6 +79,24 @@ The Stage 1 model was trained using a mixed dataset strategy to improve robustne
 - **Pipeline-aligned synthetic crops** generated through the same preprocessing/segmentation flow used at inference
 
 Noise augmentation included both **Gaussian** and **salt-and-pepper** perturbations to match evaluation conditions.
+
+### Dataset Split and Training Details
+
+The training pipeline in `ocr_service_final/finetune/train_printed_only.py` uses:
+- **80/20 split in the Stage 1 design target**, with the current printed-CNN trainer using a **90/10 train/validation split** generated with a fixed random seed (`42`) for reproducibility.
+- **Optimizer:** Adam, learning rate `0.001`
+- **Scheduler:** ReduceLROnPlateau with patience `3` and factor `0.5`
+- **Loss:** CrossEntropyLoss
+- **Epochs:** up to `30`
+- **Batch size:** `128`
+- **Early stopping:** stop after `6` epochs without validation improvement
+
+Training-time augmentation is applied per sample:
+- **30% Gaussian noise**
+- **20% salt-and-pepper noise**
+- **50% clean samples**
+
+The deployed checkpoint is the best validation model saved as `printed_cnn.pth`.
 
 ### Why this worked better
 
@@ -263,6 +298,8 @@ cp ocr_service_final/printed_cnn.pth backend/pth/
 
 | Metric | Value |
 |---|---|
+| OCR accuracy - Gaussian noise | **96.04%** |
+| OCR accuracy - Salt-and-pepper noise | **95.2%** |
 | Typical compression ratio | **1.8 - 2.2x** |
 | Typical encoding efficiency | **~78 %** |
 | E2E pipeline latency (local, MPS) | **< 400 ms** |
