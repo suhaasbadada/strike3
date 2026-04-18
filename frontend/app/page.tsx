@@ -38,10 +38,12 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen overflow-hidden bg-background flex flex-col selection:bg-brand-blue/20">
+    <div className="h-screen overflow-hidden bg-gradient-to-b from-[#ffffff] to-[#f4f5f7] flex flex-col selection:bg-brand-blue/20">
       <Header status={status} onAction={status === 'complete' ? resetPipeline : runPipeline} />
       
-      <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 py-4 flex space-x-6 min-h-0">
+      <main className="flex-1 w-full max-w-[1440px] mx-auto px-6 py-4 flex space-x-6 min-h-0 relative">
+        {/* Faint separation top line */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200/50 to-transparent"></div>
 
         
         {/* Main Stage Grid Container */}
@@ -62,7 +64,7 @@ export default function Home() {
           {/* Metric Cards Bottom Bar */}
           <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4 transition-all duration-1000 ${status === 'complete' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
             {/* Card 1 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">OCR Accuracy (G)</h3>
               <div className="text-xl font-bold text-brand-blue leading-none mb-1 tracking-tight">97.4<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">Gaussian - &ge;95% req.</div>
@@ -72,7 +74,7 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">OCR Accuracy (S&P)</h3>
               <div className="text-xl font-bold text-brand-purple leading-none mb-1 tracking-tight">95.1<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">Salt & pepper - &ge;95% req.</div>
@@ -82,7 +84,7 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">Compression Ratio</h3>
               <div className="text-xl font-bold text-brand-purple leading-none mb-1 tracking-tight">3.21<span className="text-[11px] font-semibold text-gray-400 ml-0.5">x</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">vs raw text size</div>
@@ -92,7 +94,7 @@ export default function Home() {
             </div>
 
             {/* Card 4 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">Entropy</h3>
               <div className="text-xl font-bold text-orange-500 leading-none mb-1 tracking-tight">4.87</div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">bits / symbol</div>
@@ -102,7 +104,7 @@ export default function Home() {
             </div>
 
             {/* Card 5 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">Encoding Efficiency</h3>
               <div className="text-xl font-bold text-brand-green leading-none mb-1 tracking-tight">96.2<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">Huffman quality</div>
@@ -112,7 +114,7 @@ export default function Home() {
             </div>
 
             {/* Card 6 */}
-            <div className="bg-white border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
               <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">E2E Latency</h3>
               <div className="text-xl font-bold text-gray-900 leading-none mb-1 tracking-tight">230<span className="text-[11px] font-semibold text-gray-400 ml-1">ms</span></div>
               <div className="text-[9px] font-medium text-gray-400 mb-2.5">benchmarked</div>

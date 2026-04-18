@@ -6,7 +6,7 @@ export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset:
   const isActive = status === 'ocr';
 
   return (
-    <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-500 overflow-hidden shadow-sm ${isActive ? 'border-brand-blue ring-4 ring-brand-blue/10 scale-[1.02]' : 'border-gray-200'} ${isCompact ? 'h-max' : 'h-full flex-1'}`}>
+    <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-500 overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] ${isActive ? 'border-brand-blue ring-4 ring-brand-blue/10 scale-[1.02]' : 'border-gray-100/50'} ${isCompact ? 'h-max' : 'h-full flex-1'}`}>
       
       <div className={`px-5 py-4 flex justify-between items-center transition-colors ${isCompact ? 'bg-gray-50' : 'border-b border-gray-100'}`}>
         <div className="bg-brand-blue/10 text-brand-blue text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Stage 1</div>

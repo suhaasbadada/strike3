@@ -10,7 +10,7 @@ export function VerificationStage({ status }: { status: PipelineStatus }) {
   const { metrics } = useCompressionSim(isVisible);
 
   return (
-    <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-700 shadow-sm overflow-hidden flex-1 ${isActive ? 'border-brand-green ring-4 ring-brand-green/10 scale-[1.02] z-10' : 'border-gray-200'} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+    <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-1000 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] overflow-hidden flex-1 ${isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95 pointer-events-none'} ${isActive ? 'border-brand-green ring-4 ring-brand-green/10' : 'border-gray-100/50'}`}>
 
       <div className={`px-5 py-4 border-b border-gray-100 flex justify-between items-center transition-colors ${isActive ? 'bg-brand-green/5' : ''}`}>
         <div className="bg-brand-green/10 text-brand-green text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Stage 3</div>

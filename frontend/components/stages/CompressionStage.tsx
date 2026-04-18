@@ -210,7 +210,7 @@ export function CompressionStage({ status }: { status: PipelineStatus }) {
 
   return (
     <>
-      <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-700 shadow-sm overflow-hidden flex-1 ${isActive ? 'border-brand-purple ring-4 ring-brand-purple/10 scale-[1.02] z-10' : 'border-gray-200'} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+      <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-700 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.04)] overflow-hidden flex-1 ${isActive ? 'border-brand-purple ring-4 ring-brand-purple/10 scale-[1.02] z-10' : 'border-gray-100/50'} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
 
         <div className={`px-4 py-3 border-b border-gray-100 flex justify-between items-center transition-colors ${isActive ? 'bg-brand-purple/5' : ''}`}>
           <div className="bg-brand-purple/10 text-brand-purple text-[9px] font-bold px-2 py-1 rounded uppercase tracking-wider">Stage 2</div>
@@ -254,18 +254,32 @@ export function CompressionStage({ status }: { status: PipelineStatus }) {
           </div>
 
           {/* Compression Bar */}
-          <div className="mb-3 lg:mb-4">
-            <div className="flex justify-between items-center text-[9px] text-gray-400 font-bold mb-1 uppercase tracking-wider">
-              <span>Original {metrics.originalSize} B</span>
-              {isVisible && (
-                <span className="text-brand-purple/70 normal-case tracking-normal transform translate-y-0.5">
-                  ({Math.round((1 - metrics.compressedSize / metrics.originalSize) * 100)}% reduction)
-                </span>
-              )}
-              <span className="text-brand-purple">Compressed {metrics.compressedSize} B</span>
+          <div className="mb-4 lg:mb-5 relative">
+            <div className="flex justify-between items-end text-[9px] text-gray-800 font-bold mb-1.5 uppercase tracking-widest px-0.5">
+              <span>Original &middot; {metrics.originalSize} B</span>
+              <span className="text-gray-800">Compressed &middot; {metrics.compressedSize} B</span>
             </div>
-            <div className="w-full bg-brand-purple/10 rounded-full h-1.5 overflow-hidden flex">
-              <div className="bg-brand-purple h-1.5 rounded-full transition-all duration-300 ease-linear shadow-sm" style={{ width: `${processedRatio}%` }}></div>
+            
+            {isVisible && processedRatio > 0 && (
+              <div 
+                className="absolute text-[8px] text-teal-600 tracking-wider font-bold whitespace-nowrap pointer-events-none transition-all duration-300 ease-linear"
+                style={{ 
+                  left: `calc(${(processedRatio / 100) * (metrics.compressedSize / metrics.originalSize) * 100}% - 4px)`, 
+                  transform: 'translateX(-100%)',
+                  bottom: '12px'
+                }}
+              >
+                - {Math.round((1 - metrics.compressedSize / metrics.originalSize) * 100)}% REDUCTION
+              </div>
+            )}
+
+            <div className="w-full bg-gray-200 rounded-sm h-[5px] overflow-visible flex relative z-10">
+              <div 
+                className="bg-[#1a1a1a] h-full flex items-center relative transition-all duration-300 ease-linear" 
+                style={{ width: `${(processedRatio / 100) * (metrics.compressedSize / metrics.originalSize) * 100}%` }}
+              >
+                <div className="absolute right-[-1px] w-[2px] h-[10px] bg-teal-600 z-20"></div>
+              </div>
             </div>
           </div>
 
