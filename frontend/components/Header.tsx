@@ -38,15 +38,11 @@ export function Header({ status, onAction }: { status: PipelineStatus, onAction:
             </div>
           </div>
           <div className="flex items-center space-x-3">
-            <span className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">Noise</span>
-            <div className="text-sm font-semibold bg-white border border-gray-200 rounded-md py-1.5 px-4 text-brand-purple shadow-sm">
-              Gaussian
-            </div>
-          </div>
-          <div className="flex items-center space-x-3">
             <span className="text-[11px] font-bold text-gray-400 tracking-widest uppercase">Dataset</span>
-            <div className="text-sm font-semibold bg-white border border-gray-200 rounded-md py-1.5 px-4 text-gray-800 shadow-sm">
-              MNIST
+            <div className="flex items-center space-x-1.5">
+              <div className="text-sm font-semibold bg-white border border-gray-200 rounded-md py-1.5 px-3 text-gray-800 shadow-sm">MNIST</div>
+              <div className="text-sm font-semibold bg-white border border-gray-200 rounded-md py-1.5 px-3 text-gray-800 shadow-sm">EMNIST</div>
+              <div className="text-sm font-semibold bg-white border border-gray-200 rounded-md py-1.5 px-3 text-gray-800 shadow-sm">Printed Fonts</div>
             </div>
           </div>
         </div>

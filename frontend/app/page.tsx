@@ -88,26 +88,7 @@ export default function Home() {
           </div>
 
           {/* Metric Cards Bottom Bar */}
-          <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4 transition-all duration-1000 ${status === 'complete' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
-            {/* Card 1 */}
-            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
-              <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">OCR Accuracy (G)</h3>
-              <div className="text-xl font-bold text-brand-blue leading-none mb-1 tracking-tight">97.4<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
-              <div className="text-[9px] font-medium text-gray-400 mb-2.5">Gaussian - &ge;95% req.</div>
-              <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="bg-brand-blue h-full rounded-full" style={{ width: '97.4%' }}></div>
-              </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
-              <h3 className="text-[9px] font-bold text-gray-400 tracking-widest uppercase mb-1">OCR Accuracy (S&P)</h3>
-              <div className="text-xl font-bold text-brand-purple leading-none mb-1 tracking-tight">95.1<span className="text-[11px] font-semibold text-gray-400 ml-0.5">%</span></div>
-              <div className="text-[9px] font-medium text-gray-400 mb-2.5">Salt & pepper - &ge;95% req.</div>
-              <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
-                <div className="bg-brand-purple h-full rounded-full" style={{ width: '95.1%' }}></div>
-              </div>
-            </div>
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 transition-all duration-1000 ${status === 'complete' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
 
             {/* Card 3 */}
             <div className="bg-white border border-gray-100/50 rounded-xl p-3 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.06)] transition-all duration-300 transform hover:-translate-y-0.5">
