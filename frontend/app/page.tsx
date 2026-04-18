@@ -22,7 +22,7 @@ export default function Home() {
         const formData = new FormData();
         formData.append("file", selectedFile);
         
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "https://localhost:8000"}/process-image`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000"}/process-image`, {
           method: "POST",
           body: formData
         });
