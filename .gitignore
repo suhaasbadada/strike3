@@ -33,3 +33,7 @@ Thumbs.db
 # MISC
 coverage/
 dist/
+
+data/
+README_NoisyOffice.docx
+README_NoisyOffice.txt
