@@ -20,7 +20,7 @@ A full-stack, end-to-end pipeline that ingests a noisy scanned document image, e
 
 ## Architecture Overview
 
-![Pipeline Overview](pipeline_overview.jpeg)
+<img src="pipeline_overview.jpeg" alt="Pipeline Overview" width="760" />
 
 The `/process-image` endpoint orchestrates both stages in a single call: it runs OCR on the uploaded image, pipes the extracted text into the Adaptive Huffman encoder, decompresses, and verifies lossless recovery - returning all metrics in one JSON response.
 
@@ -38,7 +38,7 @@ Stage 1 is a FastAPI OCR service that processes noisy document images through a 
 
 ### Stage 1 Architecture Diagram
 
-![Stage 1 OCR Flow](stage1_flow_image.jpeg)
+<img src="stage1_flow_image.jpeg" alt="Stage 1 OCR Flow" width="700" />
 
 ### Model
 
