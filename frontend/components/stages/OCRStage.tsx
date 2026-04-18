@@ -1,71 +1,77 @@
-import { Upload } from "lucide-react";
+import { Upload, CheckCircle2, RotateCcw, Loader2 } from "lucide-react";
+import { PipelineStatus } from "../../lib/types";
 
-export function OCRStage() {
+export function OCRStage({ status, onReset }: { status: PipelineStatus, onReset: () => void }) {
+  const isCompact = status === 'compress' || status === 'verify' || status === 'complete';
+  const isActive = status === 'ocr';
+
   return (
-    <div className="flex flex-col h-full bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      {/* Header */}
-      <div className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+    <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-500 overflow-hidden shadow-sm ${isActive ? 'border-brand-blue ring-4 ring-brand-blue/10 scale-[1.02]' : 'border-gray-200'} ${isCompact ? 'h-max' : 'h-full flex-1'}`}>
+      
+      <div className={`px-5 py-4 flex justify-between items-center transition-colors ${isCompact ? 'bg-gray-50' : 'border-b border-gray-100'}`}>
         <div className="bg-brand-blue/10 text-brand-blue text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Stage 1</div>
         <div className="bg-gray-100 text-gray-500 text-[10px] font-mono px-2.5 py-1 rounded uppercase tracking-wider">POST /ocr</div>
       </div>
       
       <div className="p-6 flex flex-col flex-1">
-        <h2 className="text-lg font-bold text-gray-900 mb-6 tracking-tight">OCR microservice — CNN</h2>
+        {!isCompact && <h2 className="text-lg font-bold text-gray-900 mb-6 tracking-tight">OCR microservice — CNN</h2>}
         
-        {/* Upload Zone */}
-        <div className="border-2 border-dashed border-gray-200 rounded-xl bg-gray-50 flex flex-col items-center justify-center py-10 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group">
-          <Upload className="w-7 h-7 text-gray-400 group-hover:text-brand-blue mb-3 transition-colors" />
-          <p className="text-sm font-semibold text-gray-700">Drop scanned image or browse</p>
-          <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">PNG · JPG · TIFF · MAX 10 MB</p>
-        </div>
+        {status === 'idle' && (
+          <>
+            <div className="border-2 border-dashed border-gray-300 rounded-xl bg-gray-50 flex flex-col items-center justify-center py-10 px-6 mb-6 hover:border-brand-blue/50 hover:bg-brand-blue/5 transition-all duration-200 cursor-pointer group">
+              <Upload className="w-7 h-7 text-gray-400 group-hover:text-brand-blue mb-3 transition-colors" />
+              <p className="text-sm font-semibold text-gray-700">Drop scanned image or browse</p>
+              <p className="text-[10px] text-gray-400 mt-1.5 uppercase font-bold tracking-widest">PNG · JPG · TIFF · MAX 10 MB</p>
+            </div>
+            <div className="grid grid-cols-3 gap-2 mb-8">
+              <button className="bg-brand-blue text-white text-xs font-semibold py-2.5 rounded-lg shadow-sm">Gaussian</button>
+              <button className="bg-brand-purple/20 text-brand-purple text-xs font-semibold py-2.5 rounded-lg hover:bg-brand-purple/30 transition-colors">Salt & pepper</button>
+              <button className="bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-semibold py-2.5 rounded-lg transition-colors">None</button>
+            </div>
+          </>
+        )}
 
-        {/* Noise profile buttons */}
-        <div className="grid grid-cols-3 gap-2 mb-8">
-          <button className="bg-brand-blue text-white text-xs font-semibold py-2.5 rounded-lg shadow-sm hover:bg-blue-600 transition-colors">Gaussian</button>
-          <button className="bg-brand-purple text-white text-xs font-semibold py-2.5 rounded-lg shadow-sm hover:bg-purple-600 transition-colors">Salt & pepper</button>
-          <button className="bg-gray-100 text-gray-600 hover:bg-gray-200 text-xs font-semibold py-2.5 rounded-lg transition-colors">None</button>
-        </div>
+        {status === 'ocr' && (
+          <div className="flex flex-col items-center justify-center flex-1 py-12 space-y-6 animate-pulse">
+            <Loader2 className="w-10 h-10 text-brand-blue animate-spin" />
+            <div className="text-center">
+              <p className="text-sm font-bold text-gray-900">Running CNN Inference</p>
+              <p className="text-xs text-brand-blue font-medium mt-1">Applying Gaussian filter & extracting text...</p>
+            </div>
+            
+            <div className="w-full max-w-xs mt-4">
+              <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden">
+                <div className="bg-brand-blue h-1.5 rounded-full w-2/3 animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+        )}
 
-        {/* Character Accuracy */}
-        <div className="mb-8">
-          <h3 className="text-[10px] font-bold text-gray-400 tracking-widest uppercase mb-4">Character Accuracy By Profile</h3>
-          
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-1.5">
-              <span className="text-xs font-semibold text-gray-700 tracking-wide">Gaussian</span>
-              <span className="text-xs font-bold text-brand-blue">97.4%</span>
+        {isCompact && (
+          <div className="flex flex-col animate-in fade-in slide-in-from-top-4 duration-500">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center space-x-2">
+                <CheckCircle2 className="w-5 h-5 text-brand-blue" />
+                <span className="font-bold text-gray-900 text-sm">OCR Complete</span>
+              </div>
+              <button onClick={onReset} className="text-[10px] font-bold text-gray-500 hover:text-brand-blue bg-gray-100 hover:bg-brand-blue/10 px-2 py-1 rounded-md transition-colors flex items-center shadow-sm">
+                <RotateCcw className="w-3 h-3 mr-1" /> Replace Upload
+              </button>
             </div>
-            <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden relative">
-              <div className="bg-brand-blue h-1.5 rounded-full absolute left-0 top-0 transition-all duration-1000 ease-out" style={{ width: '97.4%' }}></div>
+            
+            <div className="flex items-center space-x-3 mb-3">
+              <div className="w-10 h-10 bg-gray-200 rounded object-cover flex-shrink-0 border border-gray-300 flex items-center justify-center text-gray-400 text-[8px] font-bold">DOC</div>
+              <div className="bg-[#f0f2f5] border border-gray-200 rounded-lg p-2 font-mono text-[10px] text-gray-600 shadow-inner flex-1 truncate">
+                Invoice #4821 - Fox jumps over lazy dog...
+              </div>
             </div>
-          </div>
-          
-          <div>
-            <div className="flex justify-between items-center mb-1.5">
-              <span className="text-xs font-semibold text-gray-700 tracking-wide">Salt & pepper</span>
-              <span className="text-xs font-bold text-brand-purple">95.1%</span>
-            </div>
-            <div className="w-full bg-gray-100 rounded-full h-1.5 overflow-hidden relative">
-              <div className="bg-brand-purple h-1.5 rounded-full absolute left-0 top-0 transition-all duration-1000 ease-out" style={{ width: '95.1%' }}></div>
-            </div>
-          </div>
-        </div>
 
-        {/* Extracted Text */}
-        <div className="mt-auto">
-          <h3 className="text-[10px] font-bold text-gray-400 tracking-widest uppercase mb-3">Extracted Text</h3>
-          <div className="bg-[#f0f2f5] border border-gray-200 rounded-xl p-4 font-mono text-xs text-gray-800 mb-4 shadow-inner overflow-x-auto">
-            Invoice #4821 - Fox jumps over lazy dog - Total: $482.00
+            <div className="flex justify-between items-center text-[10px] border-t border-gray-100 pt-2.5">
+              <div className="font-bold uppercase text-gray-500">Accuracy: <span className="text-brand-blue text-xs ml-1 tracking-tight">97.4%</span></div>
+              <div className="bg-brand-blue/10 text-brand-blue px-2 py-0.5 rounded font-bold shadow-sm">Latency: 142ms</div>
+            </div>
           </div>
-          <div className="flex justify-between items-center text-[10px] font-semibold text-gray-500 uppercase tracking-wide">
-            <span>Characters extracted <strong className="text-gray-700 ml-1 font-bold">312</strong></span>
-            <span>Model <strong className="text-gray-700 ml-1 font-bold">CNN (custom)</strong></span>
-          </div>
-          <div className="text-[11px] font-medium text-gray-400 mt-4 flex items-center bg-gray-50 px-2 py-1 rounded w-max border border-gray-100">
-            <div className="w-1.5 h-1.5 bg-gray-300 rounded-full mr-2"></div>
-            OCR latency: 142 ms
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

@@ -1,15 +1,28 @@
-import { CheckCircle2, Play, Check } from "lucide-react";
+import { CheckCircle2, Play, Check, Loader2 } from "lucide-react";
+import { PipelineStatus } from "../../lib/types";
 
-export function VerificationStage() {
+export function VerificationStage({ status }: { status: PipelineStatus }) {
+  const isVisible = status === 'verify' || status === 'complete';
+  const isActive = status === 'verify';
+
   return (
-    <div className="flex flex-col h-full bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      {/* Header */}
-      <div className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
+    <div className={`flex flex-col bg-white rounded-2xl border transition-all duration-700 shadow-sm overflow-hidden flex-1 ${isActive ? 'border-brand-green ring-4 ring-brand-green/10 scale-[1.02] z-10' : 'border-gray-200'} ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+      
+      <div className={`px-5 py-4 border-b border-gray-100 flex justify-between items-center transition-colors ${isActive ? 'bg-brand-green/5' : ''}`}>
         <div className="bg-brand-green/10 text-brand-green text-[10px] font-bold px-2.5 py-1 rounded uppercase tracking-wider">Stage 3</div>
         <div className="bg-gray-100 text-gray-500 text-[10px] font-mono px-2.5 py-1 rounded uppercase tracking-wider">POST /decompress</div>
       </div>
       
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-6 flex flex-col flex-1 relative">
+        {isActive && (
+          <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-20 flex flex-col items-center justify-center animate-in fade-in duration-300">
+            <Loader2 className="w-10 h-10 text-brand-green animate-spin mb-4 shadow-sm rounded-full" />
+            <div className="bg-brand-green text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg uppercase tracking-widest animate-pulse">
+              Verifying Byte Match
+            </div>
+          </div>
+        )}
+
         <h2 className="text-lg font-bold text-gray-900 mb-6 tracking-tight">Lossless recovery check</h2>
         
         {/* Output area */}
@@ -19,7 +32,6 @@ export function VerificationStage() {
             <div className="whitespace-nowrap overflow-x-auto pb-1 relative z-10">
               Invoice #4821 - Fox jumps over lazy dog - Total: $482.00
             </div>
-            {/* Subtle glow / match highlight effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-brand-green/5 to-transparent pointer-events-none"></div>
           </div>
         </div>
@@ -55,10 +67,10 @@ export function VerificationStage() {
         {/* Controls */}
         <div className="mt-auto">
           <div className="flex space-x-3 mb-4">
-            <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-semibold py-2 rounded-lg transition-colors flex items-center justify-center">
+            <button disabled className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-semibold py-2 rounded-lg transition-colors flex items-center justify-center opacity-50 cursor-not-allowed">
               <Play className="w-3.5 h-3.5 mr-2" /> Decompress
             </button>
-            <button className="flex-1 bg-brand-green hover:bg-green-600 text-white text-sm font-semibold py-2 rounded-lg transition-colors flex items-center justify-center shadow-md shadow-brand-green/20">
+            <button className={`${status === 'complete' ? 'bg-brand-green hover:bg-green-600 shadow-brand-green/20 text-white' : 'bg-gray-100 text-gray-400 opacity-50'} text-sm font-semibold py-2 rounded-lg transition-colors flex items-center justify-center shadow-md flex-1`}>
               <Check className="w-3.5 h-3.5 mr-2 stroke-[3px]" /> Verify match
             </button>
           </div>
