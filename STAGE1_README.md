@@ -15,7 +15,7 @@ Stage 1 is a standalone FastAPI service (port 8001) that takes a base64-encoded 
 - **Blob splitting** to handle touching/ligated characters via vertical projection valleys
 - **3-layer post-processing** pipeline (character rules → domain vocabulary fuzzy match → conservative spell correction)
 - **Noise-aware preprocessing** with automatic polarity detection and Otsu thresholding
-- **Confidence scoring** per character and aggregated for the full extraction
+- **Confidence scoring** per character and aggregated for the full extractions
 
 ---
 
